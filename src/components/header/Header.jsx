@@ -5,7 +5,7 @@ import './header.css';
 import logo from 'assets/images/logo.svg';
 
 function Header() {
-	const user = {};
+	const user = null;
 
 	return (
 		<header id="header" className="container">
@@ -32,11 +32,11 @@ function Header() {
 					<i className="ri-shopping-cart-2-line" />
 				</NavLink>
 				{user ? (
-					<NavLink className="header__link" to="/login">Đăng nhập</NavLink>
-				) : (
 					<NavLink className="header__link" to="/user/12334">
 						<i className="ri-user-3-line" />
 					</NavLink>
+				) : (
+					<NavLink className="header__link" to="/login">Đăng nhập</NavLink>
 				)}
 			</div>
 		</header>

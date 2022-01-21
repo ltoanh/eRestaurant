@@ -1,6 +1,7 @@
 :root{
   /* bg color */
   --background-primary: #FFFCF7;
+  --background-holiday: #db3232;
 
   /* color */
   --black: #08090D;
@@ -8,6 +9,8 @@
   --red: red;
   
   --primary: #F2BD57;
+
+  --border: 10px;
 
 }
 

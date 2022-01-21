@@ -8,7 +8,7 @@ function Navbar() {
 	const user = null;
 
 	return (
-		<navbar id="navbar">
+		<nav id="navbar">
 			<div className="navbar__left">
 				<div className="navbar__logo">
 					<NavLink to={PATHS.HOME_PAGE}>
@@ -49,7 +49,7 @@ function Navbar() {
 					</NavLink>
 				)}
 			</div>
-		</navbar>
+		</nav>
 	);
 }
 

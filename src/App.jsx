@@ -1,12 +1,12 @@
 import Footer from 'components/footer/Footer';
-import Header from 'components/header/Header';
+import Navbar from 'components/navbar/Navbar';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from 'routes/AppRoutes';
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <Navbar />
       <AppRoutes />
       <Footer />
     </BrowserRouter>

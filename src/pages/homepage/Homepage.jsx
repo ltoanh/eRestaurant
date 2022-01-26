@@ -1,9 +1,32 @@
-import React from 'react';
+import pizzdeeApi from 'api/pizzdeeApi';
+import React, { useEffect, useState } from 'react';
 import Hero from './hero/Hero';
 import './homepage.css';
 import ProductList from './product/list/ProductList';
 
+const LIMIT_SHOW_PRODUCT = 10;
+
 function Homepage() {
+	const [latestProductsList, setLatestProductsList] = useState([]);
+
+	// get latest product
+	const getLatestProductsList = async (limit) => {
+		const params = {
+			'_sort': "created_at:DESC",
+			'_limit': LIMIT_SHOW_PRODUCT
+		}
+		let response = await pizzdeeApi.getLatestProducts({params});
+		setLatestProductsList(response);
+	}
+	useEffect(() => {
+		getLatestProductsList(10);
+	}, []);
+	
+	useEffect(() => {
+		console.log(latestProductsList);
+	}, [latestProductsList]);
+	
+
 	return (
 		<div className='container'>
 			<Hero />

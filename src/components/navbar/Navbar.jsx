@@ -8,7 +8,7 @@ function Navbar() {
 	const user = null;
 
 	return (
-		<nav id="navbar">
+		<nav id="navbar" className='container'>
 			<div className="navbar__left">
 				<div className="navbar__logo">
 					<NavLink to={PATHS.HOME_PAGE}>

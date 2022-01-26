@@ -15,6 +15,7 @@
 }
 
 @import url('./base.css');
+@import url('./custom-slick.css');
 
 body{
   background-color: var(--background-primary);

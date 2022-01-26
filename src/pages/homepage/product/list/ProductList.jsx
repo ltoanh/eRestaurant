@@ -3,15 +3,15 @@ import Slider from 'react-slick';
 import ProductCard from '../card/ProductCard';
 import './product-list.css';
 
+const settings = {
+	dots: true,
+	arrows: true,
+	infinite: true,
+	speed: 500,
+	slidesToShow: 4,
+	slidesToScroll: 4,
+};
 function ProductList() {
-	const settings = {
-		dots: true,
-    arrows: true,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 4,
-		slidesToScroll: 4,
-	};
 
 	return (
 		<div className="product-list">

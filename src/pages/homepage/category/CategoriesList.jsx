@@ -7,9 +7,12 @@ function CategoriesList() {
 	// categories
 	const [categories, setCategories] = useState([]);
 
-	// get categories list
+	// get categories list sort by slug
 	const getCategoriesList = async () => {
-		let response = await pizzdeeApi.getCategories({ params: {} });
+    const params = {
+      '_sort': 'slug',
+    }
+		let response = await pizzdeeApi.getCategories({ params });
 		setCategories(response);
 	};
 	useEffect(() => {
@@ -30,7 +33,7 @@ export default CategoriesList;
 const Category = (props) => {
 	const { category } = props;
 	return (
-		<Link className={props.className} to={`/products?name=${category.name}`}>
+		<Link className={props.className} to={`/products?id=${category.id}`}>
 			<img src={category.thumbnail_src} alt={category.name} height={40} />
 			<span className={styles.category__title}>{category.name}</span>
 		</Link>

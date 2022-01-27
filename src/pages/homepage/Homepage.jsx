@@ -1,5 +1,6 @@
 import pizzdeeApi from 'api/pizzdeeApi';
 import React, { useEffect, useState } from 'react';
+import CategoriesList from './category/CategoriesList';
 import Hero from './hero/Hero';
 import './homepage.css';
 import ProductList from './product/list/ProductList';
@@ -10,7 +11,7 @@ function Homepage() {
 	const [latestProductsList, setLatestProductsList] = useState([]);
 
 	// get latest product
-	const getLatestProductsList = async (limit) => {
+	const getLatestProductsList = async () => {
 		const params = {
 			'_sort': "created_at:DESC",
 			'_limit': LIMIT_SHOW_PRODUCT
@@ -30,6 +31,10 @@ function Homepage() {
 	return (
 		<div className='container'>
 			<Hero />
+			<section className="section">
+				<h2 className="section__title">Danh mục</h2>
+				<CategoriesList />
+			</section>
 			<section className='section'>
         <h2 className='section__title'>Mới nhất</h2>
 				<ProductList />

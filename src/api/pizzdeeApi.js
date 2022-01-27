@@ -1,12 +1,14 @@
 import axiosClient from "./axiosClient";
 
-export const URL_PRODUCTS = '/products';
+const URL_PRODUCTS = '/products';
+const URL_CATEGORIES = '/categories';
 
 const pizzdeeApi = {
   getLatestProducts : (params) => {
-    const url = `${URL_PRODUCTS}`;
-    
-    return axiosClient.get(url, params);
+    return axiosClient.get(URL_PRODUCTS, params);
+  },
+  getCategories: (params) => {
+    return axiosClient.get(URL_CATEGORIES, params);
   }
 };
 

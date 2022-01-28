@@ -3,26 +3,25 @@ import Slider from 'react-slick';
 import ProductCard from '../card/ProductCard';
 import './product-list.css';
 
-const settings = {
+const settingsSlider = {
 	dots: true,
 	arrows: true,
 	infinite: true,
 	speed: 500,
 	slidesToShow: 4,
 	slidesToScroll: 4,
+	autoplay: false,
+	autoplaySpeed: 5000,
 };
-function ProductList() {
+function ProductList(props) {
+	const { list } = props;
 
 	return (
 		<div className="product-list">
-			<Slider {...settings}>
-				<ProductCard />
-				<ProductCard />
-				<ProductCard />
-				<ProductCard />
-				<ProductCard />
-				<ProductCard />
-				<ProductCard />
+			<Slider {...settingsSlider}>
+				{list.map((item) => (
+					<ProductCard key={item.id} item={item} />
+				))}
 			</Slider>
 		</div>
 	);

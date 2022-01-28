@@ -22,11 +22,6 @@ function Homepage() {
 	useEffect(() => {
 		getLatestProductsList(10);
 	}, []);
-	
-	useEffect(() => {
-		console.log(latestProductsList);
-	}, [latestProductsList]);
-	
 
 	return (
 		<div className='container'>
@@ -37,7 +32,7 @@ function Homepage() {
 			</section>
 			<section className='section'>
         <h2 className='section__title'>Mới nhất</h2>
-				<ProductList />
+				<ProductList list={latestProductsList}/>
 			</section>
 		</div>
 	);

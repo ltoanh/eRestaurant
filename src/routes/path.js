@@ -7,6 +7,9 @@ const PATHS = {
   CART: '/cart',
 
   USER: '/user/:id',
+
+  // product
+  PRODUCT_DETAIL: '/product/:id',
 };
 
 export default PATHS;

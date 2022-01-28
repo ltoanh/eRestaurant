@@ -1,0 +1,41 @@
+.product-list .slick-prev:before,
+.product-list .slick-next:before {
+	color: var(--primary);
+}
+
+/* set the same height with child */
+.product-list .slick-track{
+  display: flex;
+  align-items: stretch;
+}
+.slick-initialized .slick-slide{
+  display: flex;
+  align-items: stretch;
+  height: auto;
+
+  padding: 1rem 0;
+}
+.slick-slide > * {
+  height: 100%;
+}
+
+/* clear dot default style */
+.product-list .slick-dots li.slick-active button:before {
+	color: transparent;
+}
+.product-list .slick-dots li button:before {
+	color: transparent;
+}
+/* custom dot style */
+.product-list .slick-dots li {
+	width: 10px;
+	height: 10px;
+	background-color: rgba(var(--primary-rgb), 0.6);
+	border-radius: 999px;
+
+	transition: all 0.5s ease;
+}
+.product-list .slick-dots li.slick-active {
+	width: 25px;
+	background-color: var(--primary);
+}

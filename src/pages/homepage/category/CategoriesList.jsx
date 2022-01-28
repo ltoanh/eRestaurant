@@ -22,7 +22,7 @@ function CategoriesList() {
 	return (
 		<div className={styles.container}>
 			{categories.map((category) => (
-				<Category className={styles.category} category={category} />
+				<Category key={category.id} className={styles.category} category={category} />
 			))}
 		</div>
 	);

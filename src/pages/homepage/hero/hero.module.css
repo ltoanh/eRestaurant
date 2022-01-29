@@ -18,9 +18,10 @@
 
 #bg__image{
   position: absolute;
-  top: -30%;
+  bottom: 0;
   right: 5%;
   height: var(--image-height);
+  object-fit: cover;
 }
 
 #wrapper{

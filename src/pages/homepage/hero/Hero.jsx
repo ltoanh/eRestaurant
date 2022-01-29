@@ -1,7 +1,7 @@
 import React from 'react';
 // import imageChef from 'assets/images/header/Chef_Flatline.svg';
 // import heroImage from 'assets/images/header/family-210.png'
-import heroImage from 'assets/images/header/a18b051874db4d53f1f7a75cbe44c0aa.png'
+import heroImage from 'assets/images/humans/contactless-shopping-delivery.png'
 import styles from './hero.module.css';
 
 function Hero() {

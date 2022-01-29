@@ -10,7 +10,7 @@ const settingsSlider = {
 	speed: 500,
 	slidesToShow: 4,
 	slidesToScroll: 4,
-	autoplay: false,
+	autoplay: true,
 	autoplaySpeed: 5000,
 };
 function ProductList(props) {

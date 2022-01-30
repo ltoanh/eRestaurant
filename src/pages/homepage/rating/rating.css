@@ -33,7 +33,7 @@
 
 .rating_pre{
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   line-height: 1.25;
   overflow: hidden;

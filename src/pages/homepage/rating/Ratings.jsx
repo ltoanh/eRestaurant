@@ -56,7 +56,7 @@ export default Ratings;
 const Rating = ({item}) => {
   return(
     <div className="rating_item">
-      <p className="rating_pre">{item.content}</p>
+      <p className="rating_pre">{item.title}</p>
       <div className="rating_item__user">
         <img className='rating_item__user_img' src={item.user.avatar_src} alt={item.user.name} />
         <strong className='rating_item__user_name'>{item.user.name}</strong>

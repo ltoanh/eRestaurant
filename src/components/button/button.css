@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 .btn-primary-outline{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
   border: 1px solid var(--white);
   background-color: rgba(var(--primary-rgb), .6);
 
@@ -16,6 +20,9 @@
   box-shadow: 2px 4px 10px -7px rgba(0, 0, 0, .7);
 
   transition: background-color .3s ease;
+}
+.btn-primary-outline i {
+  font-size: 1.5rem;
 }
 .btn-primary-outline:hover{
   background-color: rgba(var(--primary-rgb), .8);
@@ -55,4 +62,10 @@
 }
 .arrow-primary:active{
   transform: scale(.95);
+}
+
+.btn-small{
+  font-weight: 400;
+  font-size: .8rem;
+  text-align: left;
 }

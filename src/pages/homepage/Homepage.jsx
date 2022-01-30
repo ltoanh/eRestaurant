@@ -16,6 +16,7 @@ import Hero from './hero/Hero';
 import './homepage.css';
 import ProductList from './product/list/ProductList';
 import Ratings from './rating/Ratings';
+import imgPhone from 'assets/images/phone.png';
 
 const LIMIT_SHOW_PRODUCT = 10;
 
@@ -122,9 +123,15 @@ function Homepage() {
 			</div>
 			<div className="section section-flex">
 				<div className="section__left">
-					<h2 className="section__title">Bạn có kế hoạch cho ngày hôm nay?<br></br>Đặt bàn ngay</h2>
-					<p className="section__desc">Đặt bàn online, xem các đánh giá về bữa ăn, và kiếm vouchers.</p>
-					<div><Button className="btn-primary-outline">Đặt bàn ngay</Button></div>
+					<h2 className="section__title">
+						Bạn có kế hoạch cho ngày hôm nay?<br></br>Đặt bàn ngay
+					</h2>
+					<p className="section__desc">
+						Đặt bàn online, xem các đánh giá về bữa ăn, và kiếm vouchers.
+					</p>
+					<div>
+						<Button className="btn-primary-outline">Đặt bàn ngay</Button>
+					</div>
 				</div>
 				<div className="section__right">
 					<img
@@ -137,6 +144,30 @@ function Homepage() {
 			<div className="section">
 				<h2 className="section__title">Đánh giá của khách hàng</h2>
 				<Ratings />
+			</div>
+			<div className="section section-flex section__bg-secondary">
+				<div className='section__left'>
+					<h5 className='section__title'>
+						Không bao giờ cảm thấy đói.
+						<br />
+						Tải app và tận hưởng
+					</h5>
+					<p className='section__desc'>
+						Đặt món online, đặt bàn online, đọc đánh giá nhà hàng và kiếm
+						voucher cho bữa ăn.
+					</p>
+					<div className='section-row'>
+						<Button className="btn-primary-outline btn-small">
+							<i className="ri-apple-line"></i>
+							Download on AppStore
+						</Button>
+						<Button className="btn-primary-outline btn-small">
+							<i className="ri-google-play-line"></i>
+							Get it from CHPlay
+						</Button>
+					</div>
+				</div>
+				<img height="400px" src={imgPhone} alt="download pizzdee" />
 			</div>
 		</div>
 	);

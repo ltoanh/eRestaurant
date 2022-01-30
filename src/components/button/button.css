@@ -23,3 +23,36 @@
 .btn-primary-outline:active{
   background-color: rgba(var(--primary-rgb), 1);
 }
+
+/* arrow */
+.btn-arrow{
+  display: inline-block;
+
+  cursor: pointer;
+  
+  width: 30px;
+  height: 30px;
+  
+  line-height: calc(30px - 2 * 2px);
+
+  border-radius: 999px;
+
+  box-shadow: 0 4px 7px -6px rgba(0, 0, 0, .7);
+}
+.arrow-primary{
+  background-color: transparent;
+
+  border: 2px solid var(--primary);
+
+  font-weight: 600;
+
+  transition: all .3s ease-in-out;
+}
+.arrow-primary:hover{
+  background-color: var(--primary);
+  
+  border-color: var(--white);
+}
+.arrow-primary:active{
+  transform: scale(.95);
+}

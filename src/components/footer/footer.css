@@ -1,0 +1,55 @@
+#footer{
+  display: flex;
+  padding: 3rem 0 4rem;
+
+  border-top: 1px solid var(--primary);
+
+  gap: 1rem;
+}
+.footer_left{
+  flex: 1;
+}
+.footer_right{
+  flex: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* left */
+.footer_left > * ~ * {
+  margin-top: 7px;
+}
+.footer_left__title{
+  font-size: 1.25rem;
+  width: 80%;
+}
+.footer__email__wrapper{
+  display: flex;
+  gap: .75rem;
+}
+.footer__email{
+  display: block;
+  padding: 3px 7px;
+  width: 80%;
+
+  background-color: transparent;
+
+  border-bottom: 2px solid var(--primary);
+}
+
+.footer__socials{
+  margin: 1.5rem 0;
+  
+  display: flex;
+
+  gap: .5rem;
+}
+
+/* right */
+.footer_list__title{
+  margin-bottom: 1rem;
+}
+.footer_list__item > * ~ * {
+  margin-top: .5rem;
+}

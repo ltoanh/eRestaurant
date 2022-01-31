@@ -69,3 +69,28 @@
   font-size: .8rem;
   text-align: left;
 }
+
+/* social */
+.btn-social{
+  width: 30px;
+  height: 30px;
+
+  line-height: calc(30px - 2 * 1px);
+
+  border: 1px solid var(--black);
+  border-radius: 999px;
+
+  box-shadow: 0 4px 7px -5px rgba(0, 0, 0, .7);
+
+  cursor: pointer;
+
+  transition: all .3s ease;
+}
+.btn-social-primary{
+  border-color: var(--black);
+  background-color: transparent;
+}
+.btn-social-primary:hover{
+  border-color: var(--white);
+  background-color: var(--primary);
+}

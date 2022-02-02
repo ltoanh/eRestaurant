@@ -146,17 +146,17 @@ function Homepage() {
 				<Ratings />
 			</div>
 			<div className="section section-flex section__bg-secondary">
-				<div className='section__left'>
-					<h5 className='section__title'>
+				<div className="section__left">
+					<h5 className="section__title">
 						Không bao giờ cảm thấy đói.
 						<br />
 						Tải app và tận hưởng
 					</h5>
-					<p className='section__desc'>
+					<p className="section__desc">
 						Đặt món online, đặt bàn online, đọc đánh giá nhà hàng và kiếm
 						voucher cho bữa ăn.
 					</p>
-					<div className='section-row'>
+					<div className="section-row">
 						<Button className="btn-primary-outline btn-small">
 							<i className="ri-apple-line"></i>
 							Download on AppStore
@@ -167,7 +167,9 @@ function Homepage() {
 						</Button>
 					</div>
 				</div>
-				<img height="400px" src={imgPhone} alt="download pizzdee" />
+				<div className="section__right">
+					<img height="400px" src={imgPhone} alt="download pizzdee" />
+				</div>
 			</div>
 		</div>
 	);

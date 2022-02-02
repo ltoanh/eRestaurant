@@ -1,6 +1,9 @@
 .section{
   padding: 2rem 0 1rem;
 }
+.section img{
+  object-fit: contain;
+}
 
 .section-row{
   display: flex;

@@ -7,7 +7,11 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <AppRoutes />
+      <div style={{
+        flexGrow: 1
+      }}>
+        <AppRoutes />
+      </div>
       <Footer />
     </BrowserRouter>
   );

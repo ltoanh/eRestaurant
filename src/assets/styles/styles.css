@@ -11,6 +11,8 @@
   --primary: #F2BD57;
   --primary-rgb: 242, 189, 87;
   --secondary: #ffecd3;
+  --gray: #a8a8a8;
+  --star: #ffa800;
 
   --border: 10px;
 
@@ -21,10 +23,35 @@
 
 body{
   background-color: var(--background-primary);
+
+  min-height: 100vh;
+}
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container{
-  max-width: 1440px;
+  width: 85%;
   margin: 0 auto;
   padding: 0 .5rem;
+}
+
+.short_divide{
+  width: 10%;
+  border-bottom: 1px solid var(--primary);
+  margin: 5px 0;
+}
+
+.rating-text{
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+
+  color: var(--star);
+  font-weight: 600;
+}
+.rating-text i{
+  font-size: 1.2rem;
 }

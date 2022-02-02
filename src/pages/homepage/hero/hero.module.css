@@ -7,7 +7,7 @@
   width: 100%;
   height: var(--hero-height);
 
-  background-color: var(--background-holiday);
+  background-color: var(--secondary);
 
   border-radius: var(--border);
   box-shadow: 5px 7px 10px -9px rgba(0,0,0,.8);

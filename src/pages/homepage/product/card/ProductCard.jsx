@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import avgTotalRating from 'utils/avgTotalRating';
 import formatCurrency from 'utils/formatCurrency';
 import styles from './product-card.module.css';
 
@@ -10,10 +11,7 @@ function ProductCard(props) {
 	const [rating, setRating] = useState([]);
 
 	useEffect(() => {
-		setRating(
-			item?.ratings.reduce((total, val) => (total += val.rating_star), 0) /
-				item?.ratings.length
-		);
+		setRating(avgTotalRating(item?.ratings));
 	}, [item]);
 
 	return (

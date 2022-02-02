@@ -3,6 +3,11 @@
   font-size: 1rem;
 
   cursor: pointer;
+
+  transition: all .3s ease-in-out;
+}
+.btn:active, .btn-arrow:active{
+  transform: scale(.95);
 }
 .btn-primary-outline{
   display: flex;
@@ -33,6 +38,8 @@
 
 /* arrow */
 .btn-arrow{
+  transition: all .3s ease-in-out;
+
   display: inline-block;
 
   cursor: pointer;
@@ -52,16 +59,11 @@
   border: 2px solid var(--primary);
 
   font-weight: 600;
-
-  transition: all .3s ease-in-out;
 }
 .arrow-primary:hover{
   background-color: var(--primary);
   
   border-color: var(--white);
-}
-.arrow-primary:active{
-  transform: scale(.95);
 }
 
 .btn-small{
@@ -93,4 +95,16 @@
 .btn-social-primary:hover{
   border-color: var(--white);
   background-color: var(--primary);
+}
+
+/* add to cart */
+.btn__add_to_cart{
+  background-color: var(--primary);
+  border-radius: 5px;
+
+  padding: 9px 13px;
+
+  font-weight: 600;
+
+  box-shadow: 3px 4px 6px -7px rgba(0, 0, 0, .7);
 }

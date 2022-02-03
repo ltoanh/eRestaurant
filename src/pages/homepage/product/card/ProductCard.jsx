@@ -1,11 +1,16 @@
+import { addToCart } from 'features/cart/cartSlice';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import avgTotalRating from 'utils/avgTotalRating';
 import formatCurrency from 'utils/formatCurrency';
+import formatProductAddToCart from 'utils/formatProductAddToCart';
 import styles from './product-card.module.css';
 
 function ProductCard(props) {
 	const { item } = props;
+
+	const dispatch = useDispatch();
 
 	//rating
 	const [rating, setRating] = useState([]);
@@ -13,6 +18,11 @@ function ProductCard(props) {
 	useEffect(() => {
 		setRating(avgTotalRating(item?.ratings));
 	}, [item]);
+
+	// add to cart
+	const handleAddToCart = () => {
+		dispatch(addToCart(formatProductAddToCart(item, 1)));
+	}
 
 	return (
 		<div className={styles.container}>
@@ -36,7 +46,7 @@ function ProductCard(props) {
 				</div>
 				<div className={styles.row}>
 					<span>{formatCurrency(item.price)}</span>
-					<button className={styles.btn__add_to_cart}>
+					<button onClick={handleAddToCart} className={styles.btn__add_to_cart}>
 						<i
 							className={`ri-add-circle-fill ${styles.btn__add_to_cart__icon}`}
 						></i>

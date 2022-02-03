@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import avgTotalRating from 'utils/avgTotalRating';
 import formatCurrency from 'utils/formatCurrency';
+import formatProductAddToCart from 'utils/formatProductAddToCart';
 import './product.css';
 import ProductRating from './rating/ProductRating';
 
@@ -37,9 +38,8 @@ function Product() {
 
 	// add to cart
 	const handleAddToCart = () => {
-		dispatch(addToCart(product));
-		console.log('add to cart');
-	}
+		dispatch(addToCart(formatProductAddToCart(product, qualitySelected)));
+	};
 
 	return (
 		<div className="container product">
@@ -96,7 +96,12 @@ function Product() {
 								<i className="ri-add-fill"></i>
 							</ArrowButton>
 						</div>
-						<Button onClick={handleAddToCart} className="btn__add_to_cart btn-small">Thêm vào giỏ</Button>
+						<Button
+							onClick={handleAddToCart}
+							className="btn__add_to_cart btn-small"
+						>
+							Thêm vào giỏ
+						</Button>
 					</div>
 					<div className="product_description__wrapper">
 						<h4 className="product_description__title">Mô tả</h4>

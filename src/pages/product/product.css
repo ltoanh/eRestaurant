@@ -29,12 +29,12 @@
 .product_features{
   display: flex;
   gap: 1rem;
+  margin-bottom: .5rem;
 }
 .product_features__item{
   display: flex;
   align-items: center;
   gap: 3px;
-  margin-bottom: .5rem;
   
   font-size: .85rem;
 

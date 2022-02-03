@@ -13,6 +13,7 @@
   --secondary: #ffecd3;
   --gray: #a8a8a8;
   --star: #ffa800;
+  --border-color: #e5e5e5;
 
   --border: 10px;
 
@@ -42,6 +43,10 @@ body{
   width: 10%;
   border-bottom: 1px solid var(--primary);
   margin: 5px 0;
+}
+
+.text_right{
+  text-align: right !important;
 }
 
 .rating-text{

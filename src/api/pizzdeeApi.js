@@ -6,7 +6,7 @@ const URL_RATINGS = '/ratings';
 const URL_USERS = '/users';
 
 const pizzdeeApi = {
-	getLatestProducts: (params) => {
+	getProducts: (params) => {
 		return axiosClient.get(URL_PRODUCTS, params);
 	},
 	getCategories: (params) => {

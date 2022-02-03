@@ -24,16 +24,16 @@ function Homepage() {
 	const [latestProductsList, setLatestProductsList] = useState([]);
 
 	// get latest product
-	const getLatestProductsList = async () => {
+	const getProductsList = async () => {
 		const params = {
 			_sort: 'created_at:DESC',
 			_limit: LIMIT_SHOW_PRODUCT,
 		};
-		let response = await pizzdeeApi.getLatestProducts({ params });
+		let response = await pizzdeeApi.getProducts({ params });
 		setLatestProductsList(response);
 	};
 	useEffect(() => {
-		getLatestProductsList(10);
+		getProductsList(10);
 	}, []);
 
 	return (

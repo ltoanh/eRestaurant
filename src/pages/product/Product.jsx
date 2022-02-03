@@ -1,8 +1,10 @@
 import pizzdeeApi from 'api/pizzdeeApi';
 import ArrowButton from 'components/button/ArrowButton';
 import Button from 'components/button/Button';
+import { addToCart } from 'features/cart/cartSlice';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import avgTotalRating from 'utils/avgTotalRating';
 import formatCurrency from 'utils/formatCurrency';
@@ -12,6 +14,8 @@ import ProductRating from './rating/ProductRating';
 function Product() {
 	const { id } = useParams();
 	const [product, setProduct] = useState({});
+
+	const dispatch = useDispatch();
 
 	// quality select
 	const [qualitySelected, setQualitySelected] = useState(1);
@@ -30,6 +34,12 @@ function Product() {
 	useEffect(() => {
 		fetchProductByID(id);
 	}, [id]);
+
+	// add to cart
+	const handleAddToCart = () => {
+		dispatch(addToCart(product));
+		console.log('add to cart');
+	}
 
 	return (
 		<div className="container product">
@@ -60,6 +70,7 @@ function Product() {
 						<span>({product?.ratings?.length})</span>
 					</p>
 					<p className="product_price">{formatCurrency(product?.price)}</p>
+					{/* add to cart */}
 					<div className="product_price__add_to_cart">
 						<div className="product_price__add_to_cart__quality">
 							<label htmlFor="input_quality__add_to_cart">Nhập số lượng:</label>
@@ -85,7 +96,7 @@ function Product() {
 								<i className="ri-add-fill"></i>
 							</ArrowButton>
 						</div>
-						<Button className="btn__add_to_cart btn-small">Thêm vào giỏ</Button>
+						<Button onClick={handleAddToCart} className="btn__add_to_cart btn-small">Thêm vào giỏ</Button>
 					</div>
 					<div className="product_description__wrapper">
 						<h4 className="product_description__title">Mô tả</h4>

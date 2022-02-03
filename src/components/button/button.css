@@ -9,6 +9,11 @@
 .btn:active, .btn-arrow:active{
   transform: scale(.95);
 }
+.btn_primary{
+  display: flex;
+  align-items: center;
+  background-color: var(--primary);
+}
 .btn-primary-outline{
   display: flex;
   align-items: center;

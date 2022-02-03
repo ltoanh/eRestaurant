@@ -1,0 +1,48 @@
+.cart{
+  display: flex;
+  gap: 1rem;
+}
+
+.cart__left{
+  flex: 3;
+}
+
+.cart__right{
+  flex: 1;
+}
+.cart__right > * ~ * {
+  margin-top: 1.5rem;
+}
+
+.cart__section{
+  padding: 1rem;
+  border-radius: var(--border);
+
+  border: 1px solid var(--border-color);
+}
+
+.cart__section_center{
+  display: flex;
+  justify-content: center;
+}
+
+/* voucher */
+.cart__inp_voucher{
+  display: flex;
+  align-items: stretch;
+  margin: 1rem 0;
+}
+.cart__inp_voucher input{
+  display: flex;
+  padding: 0 13px;
+  flex-grow: 1;
+  max-width: 70%;
+
+  background-color: transparent;
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--border) 0 0 var(--border);
+}
+.cart__inp_voucher .btn{
+  border-radius: 0 var(--border) var(--border) 0;
+}

@@ -16,11 +16,11 @@ function Product() {
 	// quality select
 	const [qualitySelected, setQualitySelected] = useState(1);
 	const handleSubstractQualitySelected = () => {
-		if(qualitySelected <= 1){
+		if (qualitySelected <= 1) {
 			return;
 		}
 		setQualitySelected(qualitySelected - 1);
-	}
+	};
 
 	// fetch product detail
 	const fetchProductByID = async (pID) => {
@@ -63,6 +63,12 @@ function Product() {
 					<div className="product_price__add_to_cart">
 						<div className="product_price__add_to_cart__quality">
 							<label htmlFor="input_quality__add_to_cart">Nhập số lượng:</label>
+							<ArrowButton
+								onClick={handleSubstractQualitySelected}
+								className="arrow-primary"
+							>
+								<i className="ri-subtract-line"></i>
+							</ArrowButton>
 							<input
 								value={qualitySelected}
 								onChange={(e) => setQualitySelected(e.target.value)}
@@ -77,12 +83,6 @@ function Product() {
 								className="arrow-primary"
 							>
 								<i className="ri-add-fill"></i>
-							</ArrowButton>
-							<ArrowButton
-								onClick={handleSubstractQualitySelected}
-								className="arrow-primary"
-							>
-								<i className="ri-subtract-line"></i>
 							</ArrowButton>
 						</div>
 						<Button className="btn__add_to_cart btn-small">Thêm vào giỏ</Button>

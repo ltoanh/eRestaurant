@@ -1,0 +1,39 @@
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table{
+  border-spacing: 1rem 1.5rem;
+  width: 100%;
+}
+
+.th{
+  text-align: left;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+.table__row{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.table__product_name{
+  max-width: 250px;
+}
+
+.table__product_price{
+  width: 100px;
+}
+
+.product_image{
+  display: block;
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+
+  border-radius: var(--border);
+}

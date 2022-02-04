@@ -1,4 +1,5 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { getCartFromLocalStorage, storeCartToLocalStorage } from 'utils/localStorageCart';
 
 const initialState = [];
 
@@ -6,6 +7,9 @@ export const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
+		initialStorageCart: () => {
+			return getCartFromLocalStorage() || [];
+		},
 		addToCart: (state, { payload }) => {
 			// find if exist product
 			let shoppingProduct = state.find(
@@ -16,19 +20,27 @@ export const cartSlice = createSlice({
 			} else {
 				shoppingProduct.quality += payload.quality;
 			}
+			storeCartToLocalStorage(state);
 		},
 		updateQualityProduct: (state, { payload }) => {
 			let updatingProduct = state.find((el) => el.product.id === payload.id);
 			updatingProduct.quality = payload.quality;
+			storeCartToLocalStorage(state);
 		},
 		removeProductFromCartByID: (state, { payload }) => {
-			return state.filter((el) => el.product.id !== payload);
+			state = state.filter((el) => el.product.id !== payload);
+			storeCartToLocalStorage(state);
+			return state;
 		},
 	},
 });
 
-export const { addToCart, updateQualityProduct, removeProductFromCartByID } =
-	cartSlice.actions;
+export const {
+	initialStorageCart,
+	addToCart,
+	updateQualityProduct,
+	removeProductFromCartByID,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
 

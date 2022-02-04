@@ -20,7 +20,7 @@ function Product() {
 
 	// quality select
 	const [qualitySelected, setQualitySelected] = useState(1);
-	const handleSubstractQualitySelected = () => {
+	const handleSubtractQualitySelected = () => {
 		if (qualitySelected <= 1) {
 			return;
 		}
@@ -75,7 +75,7 @@ function Product() {
 						<div className="product_price__add_to_cart__quality">
 							<label htmlFor="input_quality__add_to_cart">Nhập số lượng:</label>
 							<ArrowButton
-								onClick={handleSubstractQualitySelected}
+								onClick={handleSubtractQualitySelected}
 								className="arrow-primary"
 							>
 								<i className="ri-subtract-line"></i>

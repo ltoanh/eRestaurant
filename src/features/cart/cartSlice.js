@@ -6,22 +6,29 @@ export const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addToCart: (state, {payload}) => {
+		addToCart: (state, { payload }) => {
 			// find if exist product
-			const shoppingProduct = state.find(
+			let shoppingProduct = state.find(
 				(el) => el.product.id === payload.product.id
 			);
 			if (!shoppingProduct) {
 				state.push(payload);
 			} else {
-        shoppingProduct.quality += payload.quality;
+				shoppingProduct.quality += payload.quality;
 			}
 		},
-		changeQualityProductByID: (state, action) => {},
+		updateQualityProduct: (state, { payload }) => {
+			let updatingProduct = state.find((el) => el.product.id === payload.id);
+			updatingProduct.quality = payload.quality;
+		},
+		removeProductFromCartByID: (state, { payload }) => {
+			return state.filter((el) => el.product.id !== payload);
+		},
 	},
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateQualityProduct, removeProductFromCartByID } =
+	cartSlice.actions;
 
 export default cartSlice.reducer;
 

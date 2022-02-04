@@ -4,6 +4,7 @@ const formatProductAddToCart = (product, quality) => {
       'id': product.id,
       'name': product.name,
       'thumbnail_src': product.thumbnail_src,
+      'price': product.price,
     },
     'quality': quality,
   }

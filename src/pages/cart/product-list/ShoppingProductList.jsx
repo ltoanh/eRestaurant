@@ -3,7 +3,7 @@ import ArrowButton from 'components/button/ArrowButton';
 import {
 	removeProductFromCartByID,
 	selectorShoppingCart,
-	updateQualityProduct
+	updateQualityProduct,
 } from 'features/cart/cartSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,11 +16,24 @@ function ShoppingProductList() {
 	// selector shopping cart
 	const shoppingProducts = useSelector(selectorShoppingCart);
 
+	const removeFromCartWithAlert = (pID) => {
+		swal({
+			text: 'Bạn có chắc muốn bỏ sản phẩm khỏi giỏ?',
+			icon: 'warning',
+			buttons: true,
+			dangerMode: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				dispatch(removeProductFromCartByID(pID));
+			}
+		});
+	}
+
 	// quality select
 	const handleSubtractQualitySelected = (item) => {
 		// remove from list
 		if (item.quality <= 1) {
-			dispatch(removeProductFromCartByID(item.product.id));
+			removeFromCartWithAlert(item.product.id)
 		} else {
 			let updateValue = {
 				id: item.product.id,
@@ -40,16 +53,7 @@ function ShoppingProductList() {
 
 			// type 0
 			if (updateValue.quality === 0) {
-				swal({
-					text: "Bạn có chắc muốn bỏ sản phẩm khỏi giỏ?",
-					icon: 'warning',
-					buttons: true,
-					dangerMode: true,
-				}).then((willDelete) => {
-					if(willDelete){
-						dispatch(removeProductFromCartByID(pID));
-					}
-				});
+				removeFromCartWithAlert(pID);
 			} else {
 				dispatch(updateQualityProduct(updateValue));
 			}
@@ -64,6 +68,12 @@ function ShoppingProductList() {
 		};
 		dispatch(updateQualityProduct(updateValue));
 	};
+
+	// click delete
+	const handleClickDeleteProduct = (pID) => {
+		removeFromCartWithAlert(pID);
+	}
+
 
 	return (
 		<table className={styles.table}>
@@ -123,7 +133,7 @@ function ShoppingProductList() {
 						{/* features */}
 						<td>
 							<div className={styles.center}>
-								<span className="product_features__item">
+								<span onClick={() => handleClickDeleteProduct(item.product.id)} className="product_features__item">
 									<i className="ri-delete-bin-6-line"></i>Xóa
 								</span>
 							</div>

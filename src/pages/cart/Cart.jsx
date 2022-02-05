@@ -1,17 +1,38 @@
 import Button from 'components/button/Button';
-import React from 'react';
+import { selectorShoppingCart } from 'features/cart/cartSlice';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import formatCurrency from 'utils/formatCurrency';
 import './cart.css';
 import ShoppingProductList from './product-list/ShoppingProductList';
 
 function Cart() {
+	const cart = useSelector(selectorShoppingCart);
+	// total price
+	const [totalPrice, setTotalPrice] = useState(0);
+	// discount
+	const [discount, setDiscount] = useState(0);
+
+	const handleTotalPrice = () => {
+		let total = cart.reduce(
+			(total, item) => (total += item.quality * item.product.price),
+			0
+		);
+		setTotalPrice(total);
+	};
+
+	useEffect(() => {
+		handleTotalPrice();
+	}, [cart]);
+
 	return (
 		<div className="container cart">
 			<section className="cart__left cart__section">
 				<ShoppingProductList />
 			</section>
-			{/* voucher */}
 			<section className="cart__right">
+				{/* voucher */}
 				<div className="cart__section">
 					<p>Bạn có voucher?</p>
 					<div className="cart__inp_voucher">
@@ -25,24 +46,24 @@ function Cart() {
 						<tbody>
 							<tr>
 								<td>Tổng tiền:</td>
-								<td className="text_right">{formatCurrency(45000)}</td>
+								<td className="text_right">{formatCurrency(totalPrice)}</td>
 							</tr>
 							<tr>
 								<td>Giảm giá:</td>
-								<td className="text_right">{formatCurrency(0)}</td>
+								<td className="text_right">{formatCurrency(discount)}</td>
 							</tr>
 							<tr>
 								<td>Tổng thanh toán:</td>
 								<td className="text_right" style={{ fontWeight: '700' }}>
-									{formatCurrency(45000)}
+									{formatCurrency(totalPrice - discount)}
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-        <div className="cart__section_center">
-          <Button className="btn-primary-outline">Thanh toán</Button>
-        </div>
+				<div className="cart__section_center">
+					<Button className="btn-primary-outline">Thanh toán</Button>
+				</div>
 			</section>
 		</div>
 	);

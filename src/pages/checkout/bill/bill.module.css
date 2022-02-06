@@ -1,0 +1,21 @@
+.title{
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.shipping_information{
+  margin: 1rem 0;
+}
+.shipping_information > * ~ * {
+  margin-top: .3rem;
+}
+.name{
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.small_text{
+  color: var(--gray);
+}
+.text_black{
+  color: var(--black);
+}

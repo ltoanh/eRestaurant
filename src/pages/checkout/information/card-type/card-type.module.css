@@ -1,0 +1,20 @@
+.card{
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 1rem;
+  gap: .7rem;
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--border);
+
+  cursor: pointer;
+
+  width: calc(50% - .5rem / 2);
+
+  transition: all .2s ease;
+}
+
+.active{
+  border-color: var(--primary);
+}

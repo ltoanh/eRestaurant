@@ -5,6 +5,7 @@ const PATHS = {
   ABOUT_US: '/about-us',
 
   CART: '/cart',
+  CHECKOUT: '/checkout',
 
   USER: '/user/:id',
 

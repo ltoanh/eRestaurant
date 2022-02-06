@@ -3,6 +3,8 @@ import { selectorShoppingCart } from 'features/cart/cartSlice';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PATHS from 'routes/path';
 import formatCurrency from 'utils/formatCurrency';
 import './cart.css';
 import ShoppingProductList from './product-list/ShoppingProductList';
@@ -36,7 +38,10 @@ function Cart() {
 				<div className="cart__section">
 					<p>Bạn có voucher?</p>
 					<div className="cart__inp_voucher">
-						<input type="text" placeholder="voucher" />
+						<div className="cart__inp_voucher--input">
+							<i style={{fontSize: '1.25rem'}} className="ri-coupon-3-line"></i>
+							<input type="text" placeholder="voucher" />
+						</div>
 						<Button className="btn_primary btn-small">Áp dụng</Button>
 					</div>
 				</div>
@@ -61,9 +66,13 @@ function Cart() {
 						</tbody>
 					</table>
 				</div>
-				<div className="cart__section_center">
-					<Button className="btn-primary-outline">Thanh toán</Button>
-				</div>
+				{cart.length > 0 && (
+					<div className="cart__section_center">
+						<Link to={PATHS.CHECKOUT}>
+							<Button className="btn-primary-outline">Thanh toán</Button>
+						</Link>
+					</div>
+				)}
 			</section>
 		</div>
 	);

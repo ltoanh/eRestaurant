@@ -2,6 +2,7 @@ import ArrowButton from 'components/button/ArrowButton';
 import SocialButton from 'components/button/SocialButton';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PATHS from 'routes/path';
 import './footer.css';
 
 function Footer() {
@@ -70,10 +71,10 @@ function Footer() {
 					<h6 className="footer_list__title">Liên kết</h6>
 					<ul className="footer_list__item">
 						<li>
-							<Link to="/menu">Thực đơn</Link>
+							<Link to={PATHS.MENU}>Thực đơn</Link>
 						</li>
 						<li>
-							<Link to="/shop">Cửa hàng</Link>
+							<Link to={PATHS.SHOP}>Cửa hàng</Link>
 						</li>
 						<li>Đánh giá</li>
 						<li>Blogs</li>

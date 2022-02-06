@@ -39,6 +39,24 @@ body{
   padding: 0 .5rem;
 }
 
+.page__title{
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.page__left{
+  flex: 1;
+}
+.page__right{
+  flex: 1;
+}
+
+.full_divide{
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+  margin: .5rem 0;
+}
+
 .short_divide{
   width: 10%;
   border-bottom: 1px solid var(--primary);
@@ -59,4 +77,8 @@ body{
 }
 .rating-text i{
   font-size: 1.2rem;
+}
+
+.flex{
+  display: flex;
 }

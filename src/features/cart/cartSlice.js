@@ -8,7 +8,11 @@ export const cartSlice = createSlice({
 	initialState,
 	reducers: {
 		initialStorageCart: () => {
-			return getCartFromLocalStorage() || [];
+			const initLocalCart = getCartFromLocalStorage();
+			if(initLocalCart.length > 0){
+				return initLocalCart
+			}
+			return [];
 		},
 		addToCart: (state, { payload }) => {
 			// find if exist product
@@ -32,6 +36,10 @@ export const cartSlice = createSlice({
 			storeCartToLocalStorage(state);
 			return state;
 		},
+		clearCart: () => {
+			storeCartToLocalStorage([]);
+			return [];
+		}
 	},
 });
 
@@ -40,6 +48,7 @@ export const {
 	addToCart,
 	updateQualityProduct,
 	removeProductFromCartByID,
+	clearCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -1,8 +1,9 @@
+import swal from '@sweetalert/with-react';
 import Button from 'components/button/Button';
-import { selectorShoppingCart } from 'features/cart/cartSlice';
+import { clearCart, selectorShoppingCart } from 'features/cart/cartSlice';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import formatCurrency from 'utils/formatCurrency';
 import isValidBill from 'utils/isValidBill';
 import styles from './bill.module.css';
@@ -10,10 +11,31 @@ import BillProductList from './product-list/BillProductList';
 
 function Bill(props) {
 	const cart = useSelector(selectorShoppingCart);
+	const dispatch = useDispatch();
+
 	const { information, selectedCard } = props;
 
 	// check all key had value
 	const checkHadValues = Object.values(information).every((key) => key !== '');
+
+	// confirm bill
+	const handleConfirmBill = () => {
+		swal({
+			text: 'Bạn xác nhận thanh toán hóa đơn?',
+			buttons: true,
+		}).then((willConfirm) => {
+			if (willConfirm) {
+				swal({
+					icon: 'success',
+				}).then(() => {
+					// clear when confirm cast the bill
+					dispatch(clearCart());
+
+					window.location = '/order/123';
+				});
+			}
+		});
+	};
 
 	return (
 		<div>
@@ -64,9 +86,9 @@ function Bill(props) {
 			}) &&
 				checkHadValues && (
 					<div className="cart__section_center">
-						<Link to="/order/123">
-							<Button className="btn-primary-outline">Thanh toán</Button>
-						</Link>
+						<Button onClick={handleConfirmBill} className="btn-primary-outline">
+							Thanh toán
+						</Button>
 					</div>
 				)}
 		</div>

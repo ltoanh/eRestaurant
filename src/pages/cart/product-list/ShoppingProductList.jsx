@@ -27,13 +27,13 @@ function ShoppingProductList() {
 				dispatch(removeProductFromCartByID(pID));
 			}
 		});
-	}
+	};
 
 	// quality select
 	const handleSubtractQualitySelected = (item) => {
 		// remove from list
 		if (item.quality <= 1) {
-			removeFromCartWithAlert(item.product.id)
+			removeFromCartWithAlert(item.product.id);
 		} else {
 			let updateValue = {
 				id: item.product.id,
@@ -68,12 +68,6 @@ function ShoppingProductList() {
 		};
 		dispatch(updateQualityProduct(updateValue));
 	};
-
-	// click delete
-	const handleClickDeleteProduct = (pID) => {
-		removeFromCartWithAlert(pID);
-	}
-
 
 	return (
 		<table className={styles.table}>
@@ -133,7 +127,10 @@ function ShoppingProductList() {
 						{/* features */}
 						<td>
 							<div className={styles.center}>
-								<span onClick={() => handleClickDeleteProduct(item.product.id)} className="product_features__item">
+								<span
+									onClick={() => removeFromCartWithAlert(item.product.id)}
+									className="product_features__item"
+								>
 									<i className="ri-delete-bin-6-line"></i>Xóa
 								</span>
 							</div>

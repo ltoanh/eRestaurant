@@ -2,6 +2,7 @@ import AboutUs from 'pages/about-us/AboutUs';
 import Cart from 'pages/cart/Cart';
 import Checkout from 'pages/checkout/Checkout';
 import Homepage from 'pages/homepage/Homepage';
+import OrderDetail from 'pages/order/OrderDetail';
 import Product from 'pages/product/Product';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -17,6 +18,8 @@ function AppRoutes() {
 
 			<Route path={PATHS.CART} element={<Cart />} />
 			<Route path={PATHS.CHECKOUT} element={<Checkout />} />
+
+			<Route path={PATHS.ORDER_DETAIL} element={<OrderDetail />} />
 		</Routes>
 	);
 }

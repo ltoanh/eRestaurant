@@ -19,3 +19,6 @@
 .text_black{
   color: var(--black);
 }
+.red_text{
+  color: var(--red);
+}

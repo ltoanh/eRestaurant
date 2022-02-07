@@ -7,6 +7,8 @@ const PATHS = {
   CART: '/cart',
   CHECKOUT: '/checkout',
 
+  ORDER_DETAIL: '/order/:id',
+
   USER: '/user/:id',
 
   // product

@@ -2,7 +2,9 @@ import Button from 'components/button/Button';
 import { selectorShoppingCart } from 'features/cart/cartSlice';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import formatCurrency from 'utils/formatCurrency';
+import isValidBill from 'utils/isValidBill';
 import styles from './bill.module.css';
 import BillProductList from './product-list/BillProductList';
 
@@ -15,6 +17,7 @@ function Bill(props) {
 
 	return (
 		<div>
+			{/* address */}
 			<div className={styles.shipping_information}>
 				<h3 className={styles.title}>Địa chỉ</h3>
 				{checkHadValues ? (
@@ -32,28 +35,40 @@ function Bill(props) {
 						</p>
 					</>
 				) : (
-					<p>Chưa có đủ thông tin người nhận</p>
+					<p className={styles.red_text}>Chưa có đủ thông tin người nhận</p>
 				)}
 			</div>
 			<div className="full_divide " />
+			{/* list product */}
 			<BillProductList />
 			<div className="full_divide" />
+			{/* card type */}
 			<div className={styles.shipping_information}>
 				<h3 className={styles.title}>Phương thức thanh toán</h3>
-				{selectedCard !== ''
-					? selectedCard
-					: 'Chưa chọn phương thức thanh toán'}
+				{selectedCard !== '' ? (
+					<p>{selectedCard}</p>
+				) : (
+					<p className={styles.red_text}>Chưa chọn phương thức thanh toán</p>
+				)}
 			</div>
 			<div className="full_divide" />
+			{/* total price */}
 			<div className={styles.shipping_information}>
 				<h3 className={styles.title}>Thanh toán</h3>
 				<TotalPrice />
 			</div>
-			{cart.length > 0 && (
-				<div className="cart__section_center">
-					<Button className="btn-primary-outline">Thanh toán</Button>
-				</div>
-			)}
+			{/* btn */}
+			{isValidBill({
+				cart: cart,
+				selectedCard: selectedCard,
+			}) &&
+				checkHadValues && (
+					<div className="cart__section_center">
+						<Link to="/order/123">
+							<Button className="btn-primary-outline">Thanh toán</Button>
+						</Link>
+					</div>
+				)}
 		</div>
 	);
 }

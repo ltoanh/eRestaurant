@@ -57,7 +57,7 @@ function Bill(props) {
 						</p>
 					</>
 				) : (
-					<p className={styles.red_text}>Chưa có đủ thông tin người nhận</p>
+					<p className="red_text">Chưa có đủ thông tin người nhận</p>
 				)}
 			</div>
 			<div className="full_divide " />
@@ -70,7 +70,7 @@ function Bill(props) {
 				{selectedCard !== '' ? (
 					<p>{selectedCard}</p>
 				) : (
-					<p className={styles.red_text}>Chưa chọn phương thức thanh toán</p>
+					<p className="red_text">Chưa chọn phương thức thanh toán</p>
 				)}
 			</div>
 			<div className="full_divide" />

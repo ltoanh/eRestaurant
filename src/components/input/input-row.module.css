@@ -1,0 +1,19 @@
+.input_row{
+  display: flex;
+  align-items: center;
+  padding: 13px 21px;
+  gap: 10px;
+
+  background-color: var(--white);
+  width: 100%;
+
+  box-shadow: 3px 4px 6px -7px rgba(0, 0, 0, .7);
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--border);
+
+}
+
+.input_row input{
+  flex-grow: 1;
+}

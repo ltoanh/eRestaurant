@@ -1,4 +1,6 @@
 import AboutUs from 'pages/about-us/AboutUs';
+import Login from 'pages/author/login/Login';
+import SignUp from 'pages/author/signup/SignUp';
 import Cart from 'pages/cart/Cart';
 import Checkout from 'pages/checkout/Checkout';
 import Homepage from 'pages/homepage/Homepage';
@@ -20,6 +22,9 @@ function AppRoutes() {
 			<Route path={PATHS.CHECKOUT} element={<Checkout />} />
 
 			<Route path={PATHS.ORDER_DETAIL} element={<OrderDetail />} />
+
+			<Route path={PATHS.LOGIN} element={<Login />} />
+			<Route path={PATHS.SIGNUP} element={<SignUp />} />
 		</Routes>
 	);
 }

@@ -10,6 +10,8 @@ const PATHS = {
   ORDER_DETAIL: '/order/:id',
 
   USER: '/user/:id',
+  LOGIN: '/login',
+  SIGNUP: '/signup',
 
   // product
   PRODUCT_DETAIL: '/product/:id',

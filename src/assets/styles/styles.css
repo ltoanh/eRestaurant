@@ -44,6 +44,11 @@ body{
   margin-bottom: 1rem;
 }
 
+.page__flex{
+  display: flex;
+  align-items: center;
+}
+
 .page__left{
   flex: 1;
 }
@@ -81,4 +86,18 @@ body{
 
 .flex{
   display: flex;
+}
+
+.page__half_img{
+  object-fit: cover;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.red_text{
+  color: var(--red);
+}
+.font_medium{
+  font-weight: 600;
 }

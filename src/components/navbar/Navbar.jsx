@@ -47,7 +47,7 @@ function Navbar() {
 						<i className="ri-user-3-line" />
 					</NavLink>
 				) : (
-					<NavLink className="navbar__link" to="/login">
+					<NavLink className="navbar__link" to={PATHS.LOGIN}>
 						Đăng nhập
 					</NavLink>
 				)}

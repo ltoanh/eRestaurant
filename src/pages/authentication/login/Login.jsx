@@ -6,10 +6,40 @@ import { Input } from 'components/input/InputRow';
 import './login.css';
 import { Link } from 'react-router-dom';
 import PATHS from 'routes/path';
+import pizzdeeApi from 'api/pizzdeeApi';
+import Button from 'components/button/Button';
 
 function Login() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
+	// button content loading
+	const btnContentValue = {
+		login: 'Đăng nhập',
+		loading: 'Đang đăng nhập...',
+	};
+	const [btnContent, setBtnContent] = useState(btnContentValue.login);
+
+	const resetFormMessage = () => {
+		setErrorMessage("");
+	}
+	const handleLogin = async () => {
+		const loginData = {
+			identifier: email,
+			password,
+		};
+		try {
+			setBtnContent(btnContentValue.loading);
+			resetFormMessage();
+
+			const response = await pizzdeeApi.loginWithEmail(loginData);
+
+			console.log(response);
+		} catch (err) {
+			setBtnContent(btnContentValue.login);
+			setErrorMessage(err.response.data.message[0].messages[0].message);
+		}
+	};
 
 	return (
 		<div className="container page__flex">
@@ -40,12 +70,21 @@ function Login() {
 							/>
 						</InputRow>
 					</div>
-					<p>
-						Bạn chưa có tài khoản?{' '}
-						<Link to={PATHS.SIGNUP}>
-							<span className="red_text font_medium">Đăng ký</span>
-						</Link>
-					</p>
+					<div className="form__row_between">
+						<p>
+							Bạn chưa có tài khoản?{' '}
+							<Link to={PATHS.SIGNUP}>
+								<span className="red_text font_medium">Đăng ký</span>
+							</Link>
+						</p>
+						<Button
+							onClick={handleLogin}
+							className="btn-small btn-primary-outline"
+						>
+							{btnContent}
+						</Button>
+					</div>
+					{errorMessage && <p className="red_text">{errorMessage}</p>}
 				</div>
 			</div>
 			<div className="page__right">

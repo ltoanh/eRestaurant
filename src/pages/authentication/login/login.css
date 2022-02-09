@@ -1,0 +1,13 @@
+.form__center{
+  padding: 4rem;
+}
+
+.form__center > * ~ * {
+  margin-top: 1rem;
+}
+
+.form__row_between{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

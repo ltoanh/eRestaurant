@@ -1,5 +1,6 @@
 import logo from 'assets/images/logo.svg';
 import { selectorShoppingCart } from 'features/cart/cartSlice';
+import { selectorUser } from 'features/user/userSlice';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -7,7 +8,7 @@ import PATHS from 'routes/path';
 import './navbar.css';
 
 function Navbar() {
-	const user = null;
+	const user = useSelector(selectorUser);
 	const cart = useSelector(selectorShoppingCart);
 
 	return (
@@ -42,7 +43,7 @@ function Navbar() {
 				<NavLink className={`navbar__link ${cart.length > 0 && "had-notification"}`} to={PATHS.CART}>
 					<i className="ri-shopping-cart-2-line" />
 				</NavLink>
-				{user ? (
+				{user.isAuthenticated ? (
 					<NavLink className="navbar__link" to="/user/12334">
 						<i className="ri-user-3-line" />
 					</NavLink>

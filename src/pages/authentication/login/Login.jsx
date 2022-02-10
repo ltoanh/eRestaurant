@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import imgLogin from 'assets/images/login.png';
 import InputRow from 'components/input/InputRow';
 import { InputIcon } from 'components/input/InputRow';
 import { Input } from 'components/input/InputRow';
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PATHS from 'routes/path';
 import pizzdeeApi from 'api/pizzdeeApi';
 import Button from 'components/button/Button';
+import { useDispatch } from 'react-redux';
+import { selectorUser, setUser } from 'features/user/userSlice';
+import { useSelector } from 'react-redux';
 
 function Login() {
+	// redux
+	const dispatch = useDispatch();
+	const user = useSelector(selectorUser);
+	// router
+	let navigate = useNavigate();
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
@@ -19,6 +28,13 @@ function Login() {
 		loading: 'Đang đăng nhập...',
 	};
 	const [btnContent, setBtnContent] = useState(btnContentValue.login);
+
+	// check authenticated user
+	useEffect(() => {
+		if(user.isAuthenticated){
+			navigate("/");
+		}
+	}, [user]);
 
 	const resetFormMessage = () => {
 		setErrorMessage("");
@@ -34,7 +50,12 @@ function Login() {
 
 			const response = await pizzdeeApi.loginWithEmail(loginData);
 
-			console.log(response);
+			// store user in redux
+			dispatch(setUser(response.user));
+
+			setBtnContent(btnContentValue.login);
+
+			navigate('/');
 		} catch (err) {
 			setBtnContent(btnContentValue.login);
 			setErrorMessage(err.response.data.message[0].messages[0].message);

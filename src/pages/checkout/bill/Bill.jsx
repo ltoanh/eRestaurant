@@ -4,14 +4,18 @@ import { clearCart, selectorShoppingCart } from 'features/cart/cartSlice';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import formatCurrency from 'utils/formatCurrency';
 import isValidBill from 'utils/isValidBill';
 import styles from './bill.module.css';
 import BillProductList from './product-list/BillProductList';
 
 function Bill(props) {
+	// redux
 	const cart = useSelector(selectorShoppingCart);
 	const dispatch = useDispatch();
+	// router
+	let navigate = useNavigate();
 
 	const { information, selectedCard } = props;
 

@@ -11,6 +11,7 @@ import Button from 'components/button/Button';
 import { useDispatch } from 'react-redux';
 import { selectorUser, setUser } from 'features/user/userSlice';
 import { useSelector } from 'react-redux';
+import useAuthenticatedSession from 'hooks/useAuthenticatedSession';
 
 function Login() {
 	// redux
@@ -22,6 +23,10 @@ function Login() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
+
+	// authen session
+	const { setAuthenticatedSession } = useAuthenticatedSession();
+
 	// button content loading
 	const btnContentValue = {
 		login: 'Đăng nhập',
@@ -31,14 +36,14 @@ function Login() {
 
 	// check authenticated user
 	useEffect(() => {
-		if(user.isAuthenticated){
-			navigate("/");
+		if (user.isAuthenticated) {
+			navigate('/');
 		}
 	}, [user]);
 
 	const resetFormMessage = () => {
-		setErrorMessage("");
-	}
+		setErrorMessage('');
+	};
 	const handleLogin = async () => {
 		const loginData = {
 			identifier: email,
@@ -52,12 +57,17 @@ function Login() {
 
 			// store user in redux
 			dispatch(setUser(response.user));
+			// store in session
+			setAuthenticatedSession(response.jwt);
 
 			setBtnContent(btnContentValue.login);
 
 			navigate('/');
 		} catch (err) {
+			console.log('[loi login]: ' + err);
+
 			setBtnContent(btnContentValue.login);
+
 			setErrorMessage(err.response.data.message[0].messages[0].message);
 		}
 	};

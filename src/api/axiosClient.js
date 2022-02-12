@@ -1,5 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
+import { authenticatedSession } from 'utils/handleAuthenticatedSession';
 
 const axiosClient = axios.create({
 	baseURL: process.env.REACT_APP_BASE_URL,
@@ -9,17 +10,23 @@ const axiosClient = axios.create({
 	paramsSerializer: (params) => queryString.stringify(params),
 });
 
-axiosClient.interceptors.request.use(async config => config);
+axiosClient.interceptors.request.use(async (config) => {
+	const token = authenticatedSession;
+  if (token) {
+		config.headers.authorization = `Bearer ${token}`;
+	 }
+  return config;
+});
 
 axiosClient.interceptors.response.use(
-  response => {
-    if(response && response.data) return response.data;
+	(response) => {
+		if (response && response.data) return response.data;
 
-    return response;
-  },
-  err => {
-    throw err;
-  }
+		return response;
+	},
+	(err) => {
+		throw err;
+	}
 );
 
 export default axiosClient;

@@ -35,7 +35,7 @@ function Bill(props) {
 					// clear when confirm cast the bill
 					dispatch(clearCart());
 
-					window.location = '/order/123';
+					navigate("/order/123");
 				});
 			}
 		});

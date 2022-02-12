@@ -11,7 +11,7 @@ import Button from 'components/button/Button';
 import { useDispatch } from 'react-redux';
 import { selectorUser, setUser } from 'features/user/userSlice';
 import { useSelector } from 'react-redux';
-import useAuthenticatedSession from 'hooks/useAuthenticatedSession';
+import { setAuthenticatedSession } from 'utils/handleAuthenticatedSession';
 
 function Login() {
 	// redux
@@ -23,9 +23,6 @@ function Login() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
-
-	// authen session
-	const { setAuthenticatedSession } = useAuthenticatedSession();
 
 	// button content loading
 	const btnContentValue = {
@@ -58,6 +55,7 @@ function Login() {
 			// store user in redux
 			dispatch(setUser(response.user));
 			// store in session
+			console.log('login: ' + response.jwt);
 			setAuthenticatedSession(response.jwt);
 
 			setBtnContent(btnContentValue.login);

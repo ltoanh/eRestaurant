@@ -2,16 +2,20 @@ import logo from 'assets/images/logo.svg';
 import Dropdown from 'components/dropdown/Dropdown';
 import DropdownItem from 'components/dropdown/DropdownItem';
 import { selectorShoppingCart } from 'features/cart/cartSlice';
-import { selectorUser } from 'features/user/userSlice';
+import { removeUser, selectorUser } from 'features/user/userSlice';
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import PATHS from 'routes/path';
+import { removeAuthenticatedCookie } from 'utils/handleAuthenticatedCookie';
 import './navbar.css';
 
 function Navbar() {
 	const user = useSelector(selectorUser);
 	const cart = useSelector(selectorShoppingCart);
+
+	const dispatch = useDispatch();
 
 	// modal
 	const refDropdown = useRef();
@@ -36,7 +40,10 @@ function Navbar() {
 
 	// logout
 	const handleLogout = () => {
-		console.log('logout');
+		// remove cookie
+		removeAuthenticatedCookie();
+		// remove user redux
+		dispatch(removeUser());
 	};
 
 	return (

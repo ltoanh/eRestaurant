@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from 'routes/AppRoutes';
-import { authenticatedSession } from 'utils/handleAuthenticatedSession';
+import { authenticatedCookie } from 'utils/handleAuthenticatedCookie';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function App() {
     dispatch(setUser(response))
   }
   useEffect(() => {
-    if(authenticatedSession){
+    if(authenticatedCookie){
       getMeUser();
     }
   }, [])

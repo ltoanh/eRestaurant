@@ -38,8 +38,10 @@
   color: var(--black);
 
   transition: color .3s ease;
+
+  cursor: pointer;
 }
-.navbar__link:hover{
+.navbar__middle .navbar__link:hover, .active_modal > i{
   color: var(--primary)
 }
 

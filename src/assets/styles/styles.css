@@ -101,3 +101,7 @@ body{
 .font_medium{
   font-weight: 600;
 }
+
+.dropdown__wrapper{
+  position: relative;
+}

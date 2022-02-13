@@ -8,7 +8,6 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    
     setUser: (state, {payload}) => {
       if(!state.isAuthenticated){
         return ({
@@ -18,12 +17,14 @@ export const userSlice = createSlice({
         });
       }
     },
-
+    removeUser: () => {
+      return initialState;
+    }
   }
 });
 
 export default userSlice.reducer;
 
-export const {setUser} = userSlice.actions;
+export const {setUser, removeUser} = userSlice.actions;
 
 export const selectorUser = state => state.user;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
-import { authenticatedSession } from 'utils/handleAuthenticatedSession';
+import { authenticatedCookie } from 'utils/handleAuthenticatedCookie';
 
 const axiosClient = axios.create({
 	baseURL: process.env.REACT_APP_BASE_URL,
@@ -11,7 +11,7 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(async (config) => {
-	const token = authenticatedSession;
+	const token = authenticatedCookie;
   if (token) {
 		config.headers.authorization = `Bearer ${token}`;
 	 }

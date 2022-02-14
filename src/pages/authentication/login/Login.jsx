@@ -18,7 +18,7 @@ function Login() {
 	const dispatch = useDispatch();
 	const user = useSelector(selectorUser);
 	// router
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -75,30 +75,26 @@ function Login() {
 			<div className="page__left">
 				<div className="form__center">
 					<h3 className="page__title">Chào mừng trở lại</h3>
-					<div className="input__wrapper">
-						<InputRow>
-							<InputIcon className="ri-user-line" />
-							<Input
-								name="email"
-								type="email"
-								value={email}
-								setValue={setEmail}
-								placeholder="Nhập email"
-							/>
-						</InputRow>
-					</div>
-					<div className="input__wrapper">
-						<InputRow>
-							<InputIcon className="ri-key-2-line" />
-							<Input
-								name="password"
-								type="password"
-								value={password}
-								setValue={setPassword}
-								placeholder="Nhập mật khẩu"
-							/>
-						</InputRow>
-					</div>
+					<InputRow>
+						<InputIcon className="ri-mail-line" />
+						<Input
+							name="email"
+							type="email"
+							value={email}
+							setValue={setEmail}
+							placeholder="Nhập email"
+						/>
+					</InputRow>
+					<InputRow>
+						<InputIcon className="ri-key-2-line" />
+						<Input
+							name="password"
+							type="password"
+							value={password}
+							setValue={setPassword}
+							placeholder="Nhập mật khẩu"
+						/>
+					</InputRow>
 					<div className="form__row_between">
 						<p>
 							Bạn chưa có tài khoản?{' '}

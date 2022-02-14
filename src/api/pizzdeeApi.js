@@ -7,6 +7,7 @@ const URL_RATINGS = '/ratings';
 const URL_USERS = '/users';
 const URL_ME = '/users/me';
 const URL_LOGIN = '/auth/local';
+const URL_SIGNUP = '/auth/local/register';
 
 const pizzdeeApi = {
 	getProducts: (params) => {
@@ -31,6 +32,9 @@ const pizzdeeApi = {
 	// authenticate
 	loginWithEmail: (loginData = { identifier: '', password: '' }) => {
 		return axiosClient.post(URL_LOGIN, loginData);
+	},
+	signupWithEmail: (signupData) => {
+		return axiosClient.post(URL_SIGNUP, signupData);
 	},
 	getMe: () => {
 		return axiosClient.get(URL_ME, {});

@@ -1,73 +1,30 @@
-import React, { useEffect, useState } from 'react';
 import imgLogin from 'assets/images/login.png';
-import InputRow from 'components/input/InputRow';
-import { InputIcon } from 'components/input/InputRow';
-import { Input } from 'components/input/InputRow';
-import './login.css';
-import { Link, useNavigate } from 'react-router-dom';
-import PATHS from 'routes/path';
-import pizzdeeApi from 'api/pizzdeeApi';
 import Button from 'components/button/Button';
-import { useDispatch } from 'react-redux';
-import { selectorUser, setUser } from 'features/user/userSlice';
-import { useSelector } from 'react-redux';
-import { setAuthenticatedCookie } from 'utils/handleAuthenticatedCookie';
+import InputRow, { Input, InputIcon } from 'components/input/InputRow';
+import useAuthenticate from 'hooks/useAuthenticate';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import PATHS from 'routes/path';
+import './login.css';
 
 function Login() {
-	// redux
-	const dispatch = useDispatch();
-	const user = useSelector(selectorUser);
-	// router
-	const navigate = useNavigate();
-
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [errorMessage, setErrorMessage] = useState('');
 
 	// button content loading
 	const btnContentValue = {
 		login: 'Đăng nhập',
 		loading: 'Đang đăng nhập...',
 	};
-	const [btnContent, setBtnContent] = useState(btnContentValue.login);
 
-	// check authenticated user
-	useEffect(() => {
-		if (user.isAuthenticated) {
-			navigate('/');
-		}
-	}, [user]);
-
-	const resetFormMessage = () => {
-		setErrorMessage('');
-	};
+	const { isLoading, errorMessage, setParams } = useAuthenticate('login');
 	const handleLogin = async () => {
 		const loginData = {
 			identifier: email,
 			password,
 		};
-		try {
-			setBtnContent(btnContentValue.loading);
-			resetFormMessage();
 
-			const response = await pizzdeeApi.loginWithEmail(loginData);
-
-			// store user in redux
-			dispatch(setUser(response.user));
-			// store in session
-			// console.log('login: ' + response.jwt);
-			setAuthenticatedCookie(response.jwt);
-
-			setBtnContent(btnContentValue.login);
-
-			navigate('/');
-		} catch (err) {
-			console.log('[loi login]: ' + err);
-
-			setBtnContent(btnContentValue.login);
-
-			setErrorMessage(err.response.data.message[0].messages[0].message);
-		}
+		setParams(loginData);
 	};
 
 	return (
@@ -106,7 +63,7 @@ function Login() {
 							onClick={handleLogin}
 							className="btn-small btn-primary-outline"
 						>
-							{btnContent}
+							{!isLoading ? btnContentValue.login : btnContentValue.loading}
 						</Button>
 					</div>
 					{errorMessage && <p className="red_text">{errorMessage}</p>}

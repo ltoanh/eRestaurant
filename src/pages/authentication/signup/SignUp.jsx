@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import imgSignUp from 'assets/images/signup.png';
-import { useSelector } from 'react-redux';
-import { selectorUser } from 'features/user/userSlice';
-import { Link, useNavigate } from 'react-router-dom';
-import InputRow from 'components/input/InputRow';
-import { InputIcon } from 'components/input/InputRow';
-import { Input } from 'components/input/InputRow';
-import PATHS from 'routes/path';
 import Button from 'components/button/Button';
+import InputRow, { Input, InputIcon } from 'components/input/InputRow';
+import useAuthenticate from 'hooks/useAuthenticate';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import PATHS from 'routes/path';
 
 function SignUp() {
-	// redux
-	const user = useSelector(selectorUser);
-
-	// router
-	const navigate = useNavigate();
-
 	const [username, setUsername] = useState('');
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -24,23 +15,28 @@ function SignUp() {
 	const [avatarSrc, setAvatarSrc] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordConfirmation, setPasswordConfirmation] = useState('');
-	const [errorMessage, setErrorMessage] = useState('');
 
 	// button content loading
 	const btnContentValue = {
 		signup: 'Đăng ký',
 		loading: 'Đang đăng ký...',
 	};
-	const [btnContent, setBtnContent] = useState(btnContentValue.signup);
 
-	// check authenticated user
-	useEffect(() => {
-		if (user.isAuthenticated) {
-			navigate('/');
-		}
-	}, [user]);
+	// signup
+	const {isLoading, errorMessage, setParams} = useAuthenticate('signup');
+	const handleSignUp = () => {
+		const signupData = {
+			username,
+			name,
+			email,
+			password,
+			address,
+			"phone_number": phoneNumber,
+			"avatar_src": avatarSrc,
+		};
 
-	const handleSignUp = () => {};
+		setParams(signupData);
+	};
 
 	return (
 		<div className="container page__flex">
@@ -149,7 +145,7 @@ function SignUp() {
 							onClick={handleSignUp}
 							className="btn-small btn-primary-outline"
 						>
-							{btnContent}
+							{!isLoading ? btnContentValue.signup : btnContentValue.loading}
 						</Button>
 					</div>
 					{errorMessage && <p className="red_text">{errorMessage}</p>}

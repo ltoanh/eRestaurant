@@ -17,6 +17,7 @@ function Login() {
 		loading: 'Đang đăng nhập...',
 	};
 
+	// login
 	const { isLoading, errorMessage, setParams } = useAuthenticate('login');
 	const handleLogin = async () => {
 		const loginData = {

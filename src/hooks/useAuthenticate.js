@@ -67,5 +67,3 @@ function useAuthenticate(type) {
 }
 
 export default useAuthenticate;
-
-// tham khao: https://dynonguyen.com/huong-dan-viet-custom-hooks-trong-reactjs/

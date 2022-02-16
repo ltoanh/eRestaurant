@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PATHS from 'routes/path';
-import formatCurrency from 'utils/formatCurrency';
+import formatCurrency from 'utils/format/formatCurrency';
 import './cart.css';
 import ShoppingProductList from './product-list/ShoppingProductList';
 

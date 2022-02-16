@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import formatCurrency from 'utils/formatCurrency';
-import isValidBill from 'utils/isValidBill';
+import formatCurrency from 'utils/format/formatCurrency';
+import isValidBill from 'utils/validate/isValidBill';
 import styles from './bill.module.css';
 import BillProductList from './product-list/BillProductList';
 

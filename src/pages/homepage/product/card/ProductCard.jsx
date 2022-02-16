@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import avgTotalRating from 'utils/avgTotalRating';
-import formatCurrency from 'utils/formatCurrency';
-import formatProductAddToCart from 'utils/formatProductAddToCart';
+import formatCurrency from 'utils/format/formatCurrency';
+import formatProductAddToCart from 'utils/format/formatProductAddToCart';
 import styles from './product-card.module.css';
 
 function ProductCard(props) {

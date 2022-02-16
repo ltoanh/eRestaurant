@@ -5,6 +5,7 @@ import useAuthenticate from 'hooks/useAuthenticate';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PATHS from 'routes/path';
+import isValidateForm from 'utils/validate/isValidateForm';
 
 function SignUp() {
 	const [username, setUsername] = useState('');
@@ -23,7 +24,8 @@ function SignUp() {
 	};
 
 	// signup
-	const {isLoading, errorMessage, setParams} = useAuthenticate('signup');
+	const { isLoading, errorMessage, setErrorMessage, setParams } =
+		useAuthenticate('signup');
 	const handleSignUp = () => {
 		const signupData = {
 			username,
@@ -31,11 +33,22 @@ function SignUp() {
 			email,
 			password,
 			address,
-			"phone_number": phoneNumber,
-			"avatar_src": avatarSrc,
+			phone_number: phoneNumber,
+			avatar_src: avatarSrc,
 		};
 
-		setParams(signupData);
+		setErrorMessage('');
+
+		let validateResult = isValidateForm({
+			...signupData,
+			passwordConfirmation,
+		});
+
+		if (!validateResult) {
+			setParams(signupData);
+		} else {
+			setErrorMessage(validateResult);
+		}
 	};
 
 	return (
@@ -46,8 +59,8 @@ function SignUp() {
 			<div className="page__right">
 				<div className="form__center">
 					<h3 className="page__title">Chào mừng đến với Pizzdee</h3>
-          {/* username */}
-          <InputRow>
+					{/* username */}
+					<InputRow>
 						<InputIcon className="ri-user-line" />
 						<Input
 							name="username"
@@ -57,8 +70,8 @@ function SignUp() {
 							placeholder="Nhập username"
 						/>
 					</InputRow>
-          {/* name */}
-          <InputRow>
+					{/* name */}
+					<InputRow>
 						<InputIcon className="ri-user-line" />
 						<Input
 							name="name"
@@ -68,8 +81,8 @@ function SignUp() {
 							placeholder="Nhập tên"
 						/>
 					</InputRow>
-          {/* avatar_src */}
-          <InputRow>
+					{/* avatar_src */}
+					<InputRow>
 						<InputIcon className="ri-image-line" />
 						<Input
 							name="avatar_src"
@@ -79,7 +92,7 @@ function SignUp() {
 							placeholder="Nhập địa chỉ ảnh đại diện"
 						/>
 					</InputRow>
-          {/* email */}
+					{/* email */}
 					<InputRow>
 						<InputIcon className="ri-mail-line" />
 						<Input
@@ -90,7 +103,7 @@ function SignUp() {
 							placeholder="Nhập email"
 						/>
 					</InputRow>
-          {/* password */}
+					{/* password */}
 					<InputRow>
 						<InputIcon className="ri-key-2-line" />
 						<Input
@@ -101,7 +114,7 @@ function SignUp() {
 							placeholder="Nhập mật khẩu"
 						/>
 					</InputRow>
-          {/* password confirmation */}
+					{/* password confirmation */}
 					<InputRow>
 						<InputIcon className="ri-key-2-line" />
 						<Input
@@ -112,8 +125,8 @@ function SignUp() {
 							placeholder="Xác nhận mật khẩu"
 						/>
 					</InputRow>
-          {/* address */}
-          <InputRow>
+					{/* address */}
+					<InputRow>
 						<InputIcon className="ri-map-pin-2-line" />
 						<Input
 							name="address"
@@ -123,8 +136,8 @@ function SignUp() {
 							placeholder="Nhập địa chỉ"
 						/>
 					</InputRow>
-          {/* phone_number */}
-          <InputRow>
+					{/* phone_number */}
+					<InputRow>
 						<InputIcon className="ri-phone-line" />
 						<Input
 							name="phone_number"

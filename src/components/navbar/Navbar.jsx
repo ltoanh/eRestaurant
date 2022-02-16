@@ -94,7 +94,7 @@ function Navbar() {
 						{isOpenedDropdown && (
 							<Dropdown ref={refDropdown}>
 								<DropdownItem>
-									<NavLink to="/user/123">{user.user.name}</NavLink>
+									<NavLink to="/user/123">{user.user.name || user.user.email}</NavLink>
 								</DropdownItem>
 								<DropdownItem onClick={handleLogout}>Đăng xuất</DropdownItem>
 							</Dropdown>

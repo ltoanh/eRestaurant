@@ -7,8 +7,8 @@ import ReactMarkdown from 'react-markdown';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import avgTotalRating from 'utils/avgTotalRating';
-import formatCurrency from 'utils/formatCurrency';
-import formatProductAddToCart from 'utils/formatProductAddToCart';
+import formatCurrency from 'utils/format/formatCurrency';
+import formatProductAddToCart from 'utils/format/formatProductAddToCart';
 import './product.css';
 import ProductRating from './rating/ProductRating';
 

@@ -7,8 +7,8 @@ import {
 } from 'features/cart/cartSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import formatCurrency from 'utils/formatCurrency';
-import formatInputNumeric from 'utils/formatInputNumeric';
+import formatCurrency from 'utils/format/formatCurrency';
+import formatInputNumeric from 'utils/format/formatInputNumeric';
 import styles from './shopping-product-list.module.css';
 
 function ShoppingProductList() {

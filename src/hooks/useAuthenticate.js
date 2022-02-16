@@ -45,7 +45,7 @@ function useAuthenticate(type) {
 							break;
 					}
 				} catch (err) {
-					// console.dir(err.response);
+					console.dir(err.response);
 					setErrorMessage(
 						err.response.data.message[0].messages[0].message ?? err
 					);
@@ -63,7 +63,7 @@ function useAuthenticate(type) {
 		}
 	}, [params]);
 
-	return { isLoading, errorMessage, setParams };
+	return { isLoading, errorMessage, setErrorMessage, setParams };
 }
 
 export default useAuthenticate;

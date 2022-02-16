@@ -1,7 +1,7 @@
 import pizzdeeApi from 'api/pizzdeeApi';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import formatDateRelative from 'utils/formatDate';
+import formatDateRelative from 'utils/format/formatDate';
 import './product-rating.css';
 
 function ProductRating({ item }) {

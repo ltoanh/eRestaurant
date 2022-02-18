@@ -1,7 +1,7 @@
 const PATHS = {
   HOME_PAGE: '/',
   MENU: '/menu',
-  SHOP: '/shop',
+  STORE: '/store',
   ABOUT_US: '/about-us',
 
   CART: '/cart',

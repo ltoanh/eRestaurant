@@ -74,7 +74,7 @@ function Footer() {
 							<Link to={PATHS.MENU}>Thực đơn</Link>
 						</li>
 						<li>
-							<Link to={PATHS.SHOP}>Cửa hàng</Link>
+							<Link to={PATHS.STORE}>Cửa hàng</Link>
 						</li>
 						<li>Đánh giá</li>
 						<li>Blogs</li>

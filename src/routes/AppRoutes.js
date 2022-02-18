@@ -6,6 +6,7 @@ import Checkout from 'pages/checkout/Checkout';
 import Homepage from 'pages/homepage/Homepage';
 import OrderDetail from 'pages/order/OrderDetail';
 import Product from 'pages/product/Product';
+import Store from 'pages/store/Store';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PATHS from './path';
@@ -15,6 +16,7 @@ function AppRoutes() {
 		<Routes>
 			<Route path={PATHS.HOME_PAGE} element={<Homepage />} />
 			<Route path={PATHS.ABOUT_US} element={<AboutUs />} />
+			<Route path={PATHS.STORE} element={<Store />} />
 
 			<Route path={PATHS.PRODUCT_DETAIL} element={<Product />} />
 

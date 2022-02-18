@@ -1,6 +1,9 @@
 import logo from 'assets/images/logo.svg';
 import Dropdown from 'components/dropdown/Dropdown';
 import DropdownItem from 'components/dropdown/DropdownItem';
+import InputRow from 'components/input/InputRow';
+import { Input } from 'components/input/InputRow';
+import { InputIcon } from 'components/input/InputRow';
 import { selectorShoppingCart } from 'features/cart/cartSlice';
 import { removeUser, selectorUser } from 'features/user/userSlice';
 import React, { useEffect, useRef, useState } from 'react';
@@ -20,6 +23,9 @@ function Navbar() {
 	// modal
 	const refDropdown = useRef();
 	const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
+
+	// search
+	const [isOpenSearch, setIsOpenSearch] = useState(false);
 
 	// click outside modal
 	useEffect(() => {
@@ -63,7 +69,7 @@ function Navbar() {
 						</NavLink>
 					</li>
 					<li className="navbar__list__item">
-						<NavLink className="navbar__link" to={PATHS.SHOP}>
+						<NavLink className="navbar__link" to={PATHS.STORE}>
 							Cửa hàng
 						</NavLink>
 					</li>
@@ -75,6 +81,10 @@ function Navbar() {
 				</ul>
 			</div>
 			<div className="navbar__right">
+				<InputRow className="navbar__link navbar__search">
+					<InputIcon className="ri-search-line" onClick={() => setIsOpenSearch(!isOpenSearch)}/>
+					<Input placeholder="Nhập tên sản phẩm" className={isOpenSearch ? "search__active" : "search__disable"}/>
+				</InputRow>
 				<NavLink
 					className={`navbar__link ${cart.length > 0 && 'had-notification'}`}
 					to={PATHS.CART}
@@ -94,7 +104,9 @@ function Navbar() {
 						{isOpenedDropdown && (
 							<Dropdown ref={refDropdown}>
 								<DropdownItem>
-									<NavLink to="/user/123">{user.user.name || user.user.email}</NavLink>
+									<NavLink to="/user/123">
+										{user.user.name || user.user.email}
+									</NavLink>
 								</DropdownItem>
 								<DropdownItem onClick={handleLogout}>Đăng xuất</DropdownItem>
 							</Dropdown>

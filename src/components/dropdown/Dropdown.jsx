@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   left: 0;
   transform: translateX(-50%);
   margin-top: .5rem;
+  background-color: var(--background-primary);
   
   border: 1px solid var(--gray);
   border-radius: var(--border);

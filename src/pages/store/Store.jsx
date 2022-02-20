@@ -1,12 +1,20 @@
 import React from 'react';
 import StoreContent from './content/StoreContent';
 import StoreHeader from './header/StoreHeader';
+import styled from 'styled-components';
 
 function Store() {
-	return <div className="container">
+	return <StoreWrapper className="container">
 		<StoreHeader />
 		<StoreContent />
-	</div>;
+	</StoreWrapper>;
 }
 
 export default Store;
+
+const StoreWrapper = styled.div`
+	& > * ~ * {
+		margin-top: 2rem;
+	}
+	margin-bottom: 3rem;
+`;

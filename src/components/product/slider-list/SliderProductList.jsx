@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import ProductCard from '../card/ProductCard';
-import './product-list.css';
+import './slider-product-list.css';
 
 const settingsSlider = {
 	dots: true,
@@ -13,11 +13,11 @@ const settingsSlider = {
 	autoplay: true,
 	autoplaySpeed: 5000,
 };
-function ProductList(props) {
+function SliderProductList(props) {
 	const { list } = props;
 
 	return (
-		<div className="product-list">
+		<div className="slider-product-list">
 			<Slider {...settingsSlider}>
 				{list.map((item) => (
 					<ProductCard key={item.id} item={item} />
@@ -27,4 +27,4 @@ function ProductList(props) {
 	);
 }
 
-export default ProductList;
+export default SliderProductList;

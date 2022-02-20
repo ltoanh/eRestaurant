@@ -19,7 +19,7 @@ const pizzdeeApi = {
 	getRatings: (params) => {
 		return axiosClient.get(URL_RATINGS, params);
 	},
-
+	
 	getUserByID: (id) => {
 		const url = URL_USERS + '/' + id;
 		return axiosClient.get(url, {});

@@ -40,7 +40,11 @@ export default StoreHeader;
 const Header = styled.ul`
 	justify-content: space-evenly;
 	flex-wrap: wrap;
-	font-weight: 600;
+  padding: 0 0 .5rem;
+
+  font-weight: 600;
+
+  border-bottom: 1px solid var(--border-color);
 `;
 const Item = styled.li`
 	& .active {
@@ -52,7 +56,7 @@ const Item = styled.li`
 		position: absolute;
 		bottom: -0.5rem;
 		left: 50%;
-		transform: translateX(-50%);
+		transform: translate(-50%, .25rem);
 		width: 5px;
 		height: 5px;
 		border-radius: 999px;

@@ -14,9 +14,9 @@ import PATHS from 'routes/path';
 import CategoriesList from './category/CategoriesList';
 import Hero from './hero/Hero';
 import './homepage.css';
-import ProductList from './product/list/ProductList';
 import Ratings from './rating/Ratings';
 import imgPhone from 'assets/images/phone.png';
+import SliderProductList from 'components/product/slider-list/SliderProductList';
 
 const LIMIT_SHOW_PRODUCT = 10;
 
@@ -45,7 +45,7 @@ function Homepage() {
 			</section>
 			<section className="section">
 				<h2 className="section__title">Mới nhất</h2>
-				<ProductList list={latestProductsList} />
+				<SliderProductList list={latestProductsList} />
 			</section>
 			<div className="section section-flex">
 				<div className="section__left">

@@ -1,23 +1,14 @@
-import pizzdeeApi from 'api/pizzdeeApi';
-import React, { useEffect, useState } from 'react';
+import useCategories from 'hooks/useCategories';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PATHS from 'routes/path';
 import styled from 'styled-components';
 
 function StoreHeader() {
-	const [categoryList, setCategoryList] = useState([]);
-
 	// get categories list
-	const getDataList = async (params) => {
-		const response = await pizzdeeApi.getCategories({ params });
-		setCategoryList(response);
-	};
-	useEffect(() => {
-		const params = {
-			_sort: 'slug',
-		};
-		getDataList(params);
-	}, []);
+	const {categoryList} = useCategories({
+		'_sort': 'slug',
+	})
 
 	return (
 		<Header className="flex">

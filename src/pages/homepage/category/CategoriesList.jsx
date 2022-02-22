@@ -1,27 +1,17 @@
-import pizzdeeApi from 'api/pizzdeeApi';
-import React, { useEffect, useState } from 'react';
+import useCategories from 'hooks/useCategories';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './categories.module.css';
 
 function CategoriesList() {
-	// categories
-	const [categories, setCategories] = useState([]);
-
 	// get categories list sort by slug
-	const getCategoriesList = async () => {
-    const params = {
-      '_sort': 'slug',
-    }
-		let response = await pizzdeeApi.getCategories({ params });
-		setCategories(response);
-	};
-	useEffect(() => {
-		getCategoriesList();
-	}, []);
+	const {categoryList} = useCategories({
+		'_sort': 'slug',
+	});
 
 	return (
 		<div className={styles.container}>
-			{categories.map((category) => (
+			{categoryList.map((category) => (
 				<Category key={category.id} className={styles.category} category={category} />
 			))}
 		</div>

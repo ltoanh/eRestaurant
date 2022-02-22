@@ -6,6 +6,7 @@ import Checkout from 'pages/checkout/Checkout';
 import Homepage from 'pages/homepage/Homepage';
 import OrderDetail from 'pages/order/OrderDetail';
 import Product from 'pages/product/Product';
+import Search from 'pages/search/Search';
 import StoreContent from 'pages/store/content/StoreContent';
 import Store from 'pages/store/Store';
 import React from 'react';
@@ -22,6 +23,7 @@ function AppRoutes() {
 			</Route>
 
 			<Route path={PATHS.PRODUCT_DETAIL} element={<Product />} />
+			<Route path={PATHS.SEARCH} element={<Search />} />
 
 			<Route path={PATHS.CART} element={<Cart />} />
 			<Route path={PATHS.CHECKOUT} element={<Checkout />} />

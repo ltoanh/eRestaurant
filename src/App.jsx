@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from 'routes/AppRoutes';
+import styled from 'styled-components';
 import { authenticatedCookie } from 'utils/handleAuthenticatedCookie';
 
 function App() {
@@ -32,14 +33,20 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div style={{
+      <Wrapper style={{
         flexGrow: 1
       }}>
         <AppRoutes />
-      </div>
+      </Wrapper>
       <Footer />
     </BrowserRouter>
   );
 }
 
 export default App;
+
+const Wrapper = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: stretch;
+`;

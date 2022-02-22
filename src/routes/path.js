@@ -15,6 +15,7 @@ const PATHS = {
 
   // product
   PRODUCT_DETAIL: '/product/:id',
+  SEARCH: '/search',
 };
 
 export default PATHS;

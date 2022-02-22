@@ -1,4 +1,4 @@
-import pizzdeeApi from 'api/pizzdeeApi';
+import erestaurantApi from 'api/erestaurantApi';
 import svgHumanPlan from 'assets/images/humans/barista-waiter-salesman.png';
 import svgHumanService from 'assets/images/humans/shopping-delivery-handing-box.png';
 import svgChef from 'assets/images/service/chef-svgrepo-com.svg';
@@ -29,7 +29,7 @@ function Homepage() {
 			_sort: 'created_at:DESC',
 			_limit: LIMIT_SHOW_PRODUCT,
 		};
-		let response = await pizzdeeApi.getProducts({ params });
+		let response = await erestaurantApi.getProducts({ params });
 		setLatestProductsList(response);
 	};
 	useEffect(() => {
@@ -168,7 +168,7 @@ function Homepage() {
 					</div>
 				</div>
 				<div className="section__right">
-					<img height="400px" src={imgPhone} alt="download pizzdee" />
+					<img height="400px" src={imgPhone} alt="download erestaurant" />
 				</div>
 			</div>
 		</div>

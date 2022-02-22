@@ -1,4 +1,4 @@
-import pizzdeeApi from "api/pizzdeeApi";
+import erestaurantApi from "api/erestaurantApi";
 import { useEffect, useState } from "react";
 
 function useCategories(params) {
@@ -6,7 +6,7 @@ function useCategories(params) {
 
   // get categories list
 	const getDataList = async (params) => {
-		const response = await pizzdeeApi.getCategories({ params });
+		const response = await erestaurantApi.getCategories({ params });
 		setCategoryList(response);
 	};
 	useEffect(() => {

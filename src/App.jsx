@@ -1,4 +1,4 @@
-import pizzdeeApi from 'api/pizzdeeApi';
+import erestaurantApi from 'api/erestaurantApi';
 import Footer from 'components/footer/Footer';
 import Navbar from 'components/navbar/Navbar';
 import { initialStorageCart } from 'features/cart/cartSlice';
@@ -20,7 +20,7 @@ function App() {
 
   // check authenticated user
   const getMeUser = async () => {
-    const response = await pizzdeeApi.getMe();
+    const response = await erestaurantApi.getMe();
     dispatch(setUser(response))
   }
   useEffect(() => {

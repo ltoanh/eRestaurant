@@ -54,11 +54,11 @@ function SignUp() {
 	return (
 		<div className="container page__flex">
 			<div className="page__left">
-				<img src={imgSignUp} alt="pizzdee" className="page__half_img" />
+				<img src={imgSignUp} alt="erestaurant" className="page__half_img" />
 			</div>
 			<div className="page__right">
 				<div className="form__center">
-					<h3 className="page__title">Chào mừng đến với Pizzdee</h3>
+					<h3 className="page__title">Chào mừng đến với E-Restaurant</h3>
 					{/* username */}
 					<InputRow>
 						<InputIcon className="ri-user-line" />

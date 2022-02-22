@@ -1,4 +1,4 @@
-import pizzdeeApi from 'api/pizzdeeApi';
+import erestaurantApi from 'api/erestaurantApi';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import formatDateRelative from 'utils/format/formatDate';
@@ -9,7 +9,7 @@ function ProductRating({ item }) {
 
 	// get user rating by id
 	const getRatingUser = async (uid) => {
-		let response = await pizzdeeApi.getUserByID(uid);
+		let response = await erestaurantApi.getUserByID(uid);
 		setRatingUser(response);
 	};
 	useEffect(() => {

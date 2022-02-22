@@ -57,7 +57,7 @@ function Navbar() {
 			<div className="navbar__left">
 				<div className="navbar__logo">
 					<NavLink to={PATHS.HOME_PAGE}>
-						<img src={logo} alt="Pizzdee logo" height="40px" />
+						<img src={logo} alt="E Restaurant logo" height="40px" />
 					</NavLink>
 				</div>
 			</div>

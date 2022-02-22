@@ -1,4 +1,4 @@
-import pizzdeeApi from 'api/pizzdeeApi';
+import erestaurantApi from 'api/erestaurantApi';
 import ArrowButton from 'components/button/ArrowButton';
 import Button from 'components/button/Button';
 import { addToCart } from 'features/cart/cartSlice';
@@ -29,7 +29,7 @@ function Product() {
 
 	// fetch product detail
 	const fetchProductByID = async (pID) => {
-		let response = await pizzdeeApi.getProductByID(pID);
+		let response = await erestaurantApi.getProductByID(pID);
 		setProduct(response);
 	};
 	useEffect(() => {

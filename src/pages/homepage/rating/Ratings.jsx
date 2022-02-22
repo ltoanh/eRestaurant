@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import pizzdeeApi from 'api/pizzdeeApi';
+import erestaurantApi from 'api/erestaurantApi';
 import Slider from 'react-slick';
 import './rating.css';
 import ArrowButton from 'components/button/ArrowButton';
@@ -25,7 +25,7 @@ function Ratings() {
 			_sort: 'created_at:desc',
 			_limit: LIMIT_SHOW_RATING,
 		};
-		let response = await pizzdeeApi.getRatings({ params });
+		let response = await erestaurantApi.getRatings({ params });
 		setRatingsList(response);
 	};
 	// fetch ratings data

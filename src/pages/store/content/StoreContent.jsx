@@ -1,4 +1,4 @@
-import pizzdeeApi from 'api/pizzdeeApi';
+import erestaurantApi from 'api/erestaurantApi';
 import ProductList from 'components/product/list/ProductList';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -13,7 +13,7 @@ function StoreContent() {
 		const params = {
 			_sort: 'created_at:desc',
 		};
-		const response = await pizzdeeApi.getProducts({ params });
+		const response = await erestaurantApi.getProducts({ params });
 		setDataList(response);
 	};
 	useEffect(() => {

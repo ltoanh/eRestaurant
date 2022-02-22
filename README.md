@@ -1,5 +1,5 @@
 
-# Pizzdee
+# E-Restaurant
 An E–Commerce Food website project
 ## Features
 -

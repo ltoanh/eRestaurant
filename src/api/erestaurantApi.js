@@ -9,7 +9,7 @@ const URL_ME = '/users/me';
 const URL_LOGIN = '/auth/local';
 const URL_SIGNUP = '/auth/local/register';
 
-const pizzdeeApi = {
+const erestaurantApi = {
 	getProducts: (params) => {
 		return axiosClient.get(URL_PRODUCTS, params);
 	},
@@ -41,4 +41,4 @@ const pizzdeeApi = {
 	},
 };
 
-export default pizzdeeApi;
+export default erestaurantApi;

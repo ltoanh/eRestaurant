@@ -9,7 +9,7 @@ export const cartSlice = createSlice({
 	reducers: {
 		initialStorageCart: () => {
 			const initLocalCart = getCartFromLocalStorage();
-			if(initLocalCart.length > 0){
+			if(initLocalCart?.length > 0){
 				return initLocalCart
 			}
 			return [];

@@ -1,4 +1,4 @@
-import pizzdeeApi from 'api/pizzdeeApi';
+import erestaurantApi from 'api/erestaurantApi';
 import { selectorUser, setUser } from 'features/user/userSlice';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,11 +34,11 @@ function useAuthenticate(type) {
 				try {
 					switch (type) {
 						case 'login':
-							response = await pizzdeeApi.loginWithEmail(params);
+							response = await erestaurantApi.loginWithEmail(params);
 							hasData = true;
 							break;
 						case 'signup':
-							response = await pizzdeeApi.signupWithEmail(params);
+							response = await erestaurantApi.signupWithEmail(params);
 							hasData = true;
 							break;
 						default:

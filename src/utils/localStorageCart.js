@@ -1,4 +1,4 @@
-const LOCALSTORAGE_NAME = 'PIZZDEE_CART'
+const LOCALSTORAGE_NAME = 'ERESTAURANT_CART'
 
 export const storeCartToLocalStorage = (list) => localStorage.setItem(LOCALSTORAGE_NAME, JSON.stringify(list));
 

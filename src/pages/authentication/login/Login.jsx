@@ -71,7 +71,7 @@ function Login() {
 				</div>
 			</div>
 			<div className="page__right">
-				<img className="page__half_img" src={imgLogin} alt="pizzdee" />
+				<img className="page__half_img" src={imgLogin} alt="erestaurant" />
 			</div>
 		</div>
 	);

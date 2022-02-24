@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
 			if (!shoppingProduct) {
 				state.push(payload);
 			} else {
-				shoppingProduct.quality += payload.quality;
+				shoppingProduct.quality += parseInt(payload.quality);
 			}
 			storeCartToLocalStorage(state);
 		},

@@ -6,7 +6,7 @@ const formatProductAddToCart = (product, quality) => {
       'thumbnail_src': product.thumbnail_src,
       'price': product.price,
     },
-    'quality': quality,
+    'quality': parseInt(quality),
   }
 };
 

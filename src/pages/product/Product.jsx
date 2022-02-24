@@ -11,6 +11,7 @@ import formatCurrency from 'utils/format/formatCurrency';
 import formatProductAddToCart from 'utils/format/formatProductAddToCart';
 import './product.css';
 import ProductRating from './rating/ProductRating';
+import formatInputNumeric from 'utils/format/formatInputNumeric';
 
 function Product() {
 	const { id } = useParams();
@@ -35,6 +36,16 @@ function Product() {
 	useEffect(() => {
 		fetchProductByID(id);
 	}, [id]);
+
+	// type product quality
+	const handleChangeProductQuality = (e) => {
+		let tempValue = parseInt(formatInputNumeric(e.target.value));
+		if(!isNaN(tempValue)){
+			if(tempValue !== 0){
+				setQualitySelected(tempValue);
+			}
+		}
+	}
 
 	// add to cart
 	const handleAddToCart = () => {
@@ -82,7 +93,7 @@ function Product() {
 							</ArrowButton>
 							<input
 								value={qualitySelected}
-								onChange={(e) => setQualitySelected(e.target.value)}
+								onChange={handleChangeProductQuality}
 								type="number"
 								min={1}
 								name="product_quality"

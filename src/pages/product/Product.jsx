@@ -12,6 +12,7 @@ import formatProductAddToCart from 'utils/format/formatProductAddToCart';
 import './product.css';
 import ProductRating from './rating/ProductRating';
 import formatInputNumeric from 'utils/format/formatInputNumeric';
+import styled from 'styled-components';
 
 function Product() {
 	const { id } = useParams();
@@ -40,12 +41,12 @@ function Product() {
 	// type product quality
 	const handleChangeProductQuality = (e) => {
 		let tempValue = parseInt(formatInputNumeric(e.target.value));
-		if(!isNaN(tempValue)){
-			if(tempValue !== 0){
+		if (!isNaN(tempValue)) {
+			if (tempValue !== 0) {
 				setQualitySelected(tempValue);
 			}
 		}
-	}
+	};
 
 	// add to cart
 	const handleAddToCart = () => {
@@ -54,36 +55,32 @@ function Product() {
 
 	return (
 		<div className="container product">
-			<section className="product_information ">
-				<div className="left">
-					<img
-						className="product_thumbnail"
-						src={product.thumbnail_src}
-						alt={product.name}
-					/>
-				</div>
-				<div className="right">
-					<div className="product_features">
-						<span className="product_features__item">
+			<ProductWrapper>
+				<ProductImageWrapper>
+					<ProductImage src={product.thumbnail_src} alt={product.name} />
+				</ProductImageWrapper>
+				<ProductInfoWrapper>
+					<ProductFeatures>
+						<ProductFeatureItem>
 							<i className="ri-heart-line"></i>Save
-						</span>
-						<span className="product_features__item">
+						</ProductFeatureItem>
+						<ProductFeatureItem>
 							<i className="ri-share-line"></i>Share
-						</span>
-					</div>
+						</ProductFeatureItem>
+					</ProductFeatures>
 					<div className="short_divide"></div>
-					<h3 className="product_name">{product.name}</h3>
-					<p className="product_total-rating">
+					<ProductName>{product.name}</ProductName>
+					<ProductTotalRating>
 						<span className="rating-text">
 							<i className="ri-star-fill"></i>
 							{product.ratings && avgTotalRating(product.ratings)}
 						</span>
 						<span>({product?.ratings?.length})</span>
-					</p>
-					<p className="product_price">{formatCurrency(product?.price)}</p>
+					</ProductTotalRating>
+					<ProductPrice>{formatCurrency(product?.price)}</ProductPrice>
 					{/* add to cart */}
-					<div className="product_price__add_to_cart">
-						<div className="product_price__add_to_cart__quality">
+					<ProductQualityWrapper>
+						<ProductQuality>
 							<label htmlFor="input_quality__add_to_cart">Nhập số lượng:</label>
 							<ArrowButton
 								onClick={handleSubtractQualitySelected}
@@ -91,7 +88,7 @@ function Product() {
 							>
 								<i className="ri-subtract-line"></i>
 							</ArrowButton>
-							<input
+							<ProductQualityInput
 								value={qualitySelected}
 								onChange={handleChangeProductQuality}
 								type="number"
@@ -106,29 +103,30 @@ function Product() {
 							>
 								<i className="ri-add-fill"></i>
 							</ArrowButton>
-						</div>
+						</ProductQuality>
 						<Button
 							onClick={handleAddToCart}
 							className="btn__add_to_cart btn-small"
 						>
 							Thêm vào giỏ
 						</Button>
-					</div>
-					<div className="product_description__wrapper">
-						<h4 className="product_description__title">Mô tả</h4>
+					</ProductQualityWrapper>
+					{/* description */}
+					<ProductDescriptionWrapper>
+						<ProductDescriptionTitle>Mô tả</ProductDescriptionTitle>
 						{product.description ? (
 							<ReactMarkdown>{product.description}</ReactMarkdown>
 						) : (
 							<span>Hiện chưa có mô tả</span>
 						)}
-					</div>
-				</div>
-			</section>
-			<section className="product__rating">
-				<h3 className="product__rating__title">
+					</ProductDescriptionWrapper>
+				</ProductInfoWrapper>
+			</ProductWrapper>
+			<ProductRatingWrapper>
+				<ProductRatingTitle>
 					Khách hàng của chúng tôi nói gì?
-				</h3>
-				<div className="product__user_rating__wrapper">
+				</ProductRatingTitle>
+				<ProductRatingList>
 					{product.ratings?.length > 0 ? (
 						product.ratings.map((item) => (
 							<ProductRating item={item} key={item.id} />
@@ -136,10 +134,136 @@ function Product() {
 					) : (
 						<span>Hiện chưa có đánh giá</span>
 					)}
-				</div>
-			</section>
+				</ProductRatingList>
+			</ProductRatingWrapper>
 		</div>
 	);
 }
 
 export default Product;
+
+// --------------product----------------
+const ProductWrapper = styled.section`
+	display: flex;
+
+	gap: 2rem;
+`;
+// left
+const ProductImageWrapper = styled.div`
+	flex: 1;
+`;
+const ProductImage = styled.img`
+	border-radius: var(--border);
+	object-fit: cover;
+	object-position: center;
+`;
+// right
+const ProductInfoWrapper = styled.div`
+	flex: 1;
+`;
+const ProductFeatures = styled.div`
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 0.5rem;
+`;
+const ProductFeatureItem = styled.span`
+	display: flex;
+	align-items: center;
+	gap: 3px;
+
+	font-size: 0.85rem;
+
+	cursor: pointer;
+
+	transition: all 0.2s ease-in;
+
+	& > i {
+		font-size: 1.25rem;
+	}
+
+	&:hover {
+		color: var(--primary);
+	}
+	&:active {
+		transform: scale(0.95);
+	}
+`;
+
+const ProductName = styled.h3`
+	font-size: 1.75rem;
+	margin: 0.75rem 0 0.3rem;
+`;
+
+const ProductTotalRating = styled.p`
+	display: flex;
+	align-items: center;
+
+	margin-bottom: 1rem;
+
+	& > :first-child {
+		padding-right: 5px;
+	}
+
+	& > * ~ * {
+		padding: 0 5px;
+
+		border-left: 1px solid var(--gray);
+
+		color: var(--gray);
+	}
+`;
+
+const ProductPrice = styled.p`
+	font-size: 2rem;
+	font-weight: 700;
+
+	margin-bottom: 0.5rem;
+`;
+
+//cart
+const ProductQualityWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
+
+const ProductQuality = styled.div`
+	display: flex;
+	gap: 5px;
+	align-items: center;
+`;
+
+const ProductQualityInput = styled.input`
+	border: 1px solid var(--primary);
+	width: 2.8rem;
+	padding: 5px 7px;
+
+	background-color: transparent;
+
+	border-radius: 5px;
+`;
+
+// description
+const ProductDescriptionWrapper = styled.div`
+	margin-top: 2rem;
+`;
+
+const ProductDescriptionTitle = styled.h4`
+	font-size: 1.25rem;
+`;
+
+// ----------------rating-----------------
+const ProductRatingWrapper = styled.section``;
+const ProductRatingTitle = styled.h3`
+	font-size: 1.25rem;
+	border-left: 5px solid var(--primary);
+	text-indent: 1rem;
+	padding: 3px 0;
+
+	margin: 1.5rem 0;
+`;
+const ProductRatingList = styled.div`
+	& > * ~ * {
+		margin-top: 2rem;
+	}
+`;

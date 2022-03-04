@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import formatCurrency from 'utils/format/formatCurrency';
 import formatInputNumeric from 'utils/format/formatInputNumeric';
 import styles from './shopping-product-list.module.css';
+import styled from 'styled-components';
 
 function ShoppingProductList() {
 	const dispatch = useDispatch();
@@ -99,7 +100,7 @@ function ShoppingProductList() {
 								>
 									<i className="ri-subtract-line"></i>
 								</ArrowButton>
-								<input
+								<ProductQualityInput
 									value={item.quality}
 									onChange={(e) =>
 										handleChangeSelectedValue(e, item.product.id)
@@ -108,7 +109,6 @@ function ShoppingProductList() {
 									min={1}
 									name="product_quality"
 									id="input_quality__add_to_cart"
-									className="input_quality__add_to_cart"
 								/>
 								<ArrowButton
 									onClick={() => handleAddQualitySelected(item)}
@@ -143,3 +143,13 @@ function ShoppingProductList() {
 }
 
 export default ShoppingProductList;
+
+const ProductQualityInput = styled.input`
+	border: 1px solid var(--primary);
+	width: 2.8rem;
+	padding: 5px 7px;
+
+	background-color: transparent;
+
+	border-radius: 5px;
+`;

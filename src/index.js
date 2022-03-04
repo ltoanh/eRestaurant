@@ -6,6 +6,9 @@ import App from './App';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+// react-toast
+import 'react-toastify/dist/ReactToastify.css';
+
 import 'assets/styles/styles.css';
 
 // redux toolkit

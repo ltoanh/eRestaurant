@@ -13,6 +13,7 @@ import './product.css';
 import ProductRating from './rating/ProductRating';
 import formatInputNumeric from 'utils/format/formatInputNumeric';
 import styled from 'styled-components';
+import { toast, ToastContainer } from 'react-toastify';
 
 function Product() {
 	const { id } = useParams();
@@ -50,6 +51,7 @@ function Product() {
 
 	// add to cart
 	const handleAddToCart = () => {
+		toast.success("Thêm vào giỏ hàng thành công!");
 		dispatch(addToCart(formatProductAddToCart(product, qualitySelected)));
 	};
 
@@ -136,6 +138,17 @@ function Product() {
 					)}
 				</ProductRatingList>
 			</ProductRatingWrapper>
+			<ToastContainer
+				position="bottom-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable
+				pauseOnHover
+			/>
 		</div>
 	);
 }

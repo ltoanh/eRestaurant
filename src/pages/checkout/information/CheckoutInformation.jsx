@@ -1,18 +1,16 @@
 import React from 'react';
 import CardType from './card-type/CardType';
-import styles from './checkout-information.module.css';
-
+import styled from 'styled-components';
 function CheckoutInformation(props) {
 	const {information, setInformation, selectedCard, setSelectedCard, cardList} = props;
 	
 	return (
-		<div className={styles.form}>
-			<div className={styles.form__item}>
-				<label className={styles.item__label} htmlFor="checkout__name">
+		<FormWrapper>
+			<FormItem>
+				<FormItemTitle htmlFor="checkout__name">
 					Họ tên
-				</label>
-				<input
-					className={styles.item__input}
+				</FormItemTitle>
+				<FormItemInput
 					value={information.name}
 					onChange={(e) =>
 						setInformation({ ...information, name: e.target.value })
@@ -21,13 +19,12 @@ function CheckoutInformation(props) {
 					name="name"
 					id="checkout__name"
 				/>
-			</div>
-			<div className={styles.form__item}>
-				<label className={styles.item__label} htmlFor="checkout__address">
+			</FormItem>
+			<FormItem>
+				<FormItemTitle htmlFor="checkout__address">
 					Địa chỉ
-				</label>
-				<input
-					className={styles.item__input}
+				</FormItemTitle>
+				<FormItemInput
 					value={information.address}
 					onChange={(e) =>
 						setInformation({ ...information, address: e.target.value })
@@ -36,25 +33,24 @@ function CheckoutInformation(props) {
 					name="address"
 					id="checkout__address"
 				/>
-			</div>
-			<div className={styles.form__item}>
-				<label className={styles.item__label} htmlFor="checkout__phone_number">
+			</FormItem>
+			<FormItem>
+				<FormItemTitle htmlFor="checkout__phone_number">
 					Số điện thoại
-				</label>
-				<input
+				</FormItemTitle>
+				<FormItemInput
 					value={information.phoneNumber}
 					onChange={(e) =>
 						setInformation({ ...information, phone_number: e.target.value })
 					}
-					className={styles.item__input}
 					type="text"
 					name="phone_number"
 					id="checkout__phone_number"
 				/>
-			</div>
-			<div className={styles.form__item}>
-				<p className={styles.item__label}>Phương thức thanh toán</p>
-				<div className={styles.checkout__card}>
+			</FormItem>
+			<FormItem>
+				<FormItemTitle>Phương thức thanh toán</FormItemTitle>
+				<CardWrapper>
 					{cardList.map((card) => (
 						<CardType
 							key={card.value}
@@ -63,10 +59,43 @@ function CheckoutInformation(props) {
 							setSelectedCard={setSelectedCard}
 						/>
 					))}
-				</div>
-			</div>
-		</div>
+				</CardWrapper>
+			</FormItem>
+		</FormWrapper>
 	);
 }
 
 export default CheckoutInformation;
+
+const FormWrapper = styled.form`
+  margin: 1.5rem 0;
+
+	& > * ~ *{
+		margin-top: 1rem;
+	}
+`;
+
+const FormItem = styled.div`
+	display: flex;
+  flex-direction: column;
+`;
+const FormItemTitle = styled.label`
+	font-weight: 600;
+  margin-bottom: 10px;
+`;
+const FormItemInput = styled.input`
+	padding: 7px 13px;
+  
+  background-color: transparent;
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--border);
+`;
+
+
+const CardWrapper = styled.div`
+	display: flex;
+  flex-wrap: wrap;
+
+  gap: .5rem;
+`;

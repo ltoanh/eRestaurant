@@ -1,6 +1,6 @@
 import Button from 'components/button/Button';
 import useCategories from 'hooks/useCategories';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import PATHS from 'routes/path';
 import styled from 'styled-components';

@@ -9,7 +9,7 @@ import { removeUser, selectorUser } from 'features/user/userSlice';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { createSearchParams, NavLink, useNavigate } from 'react-router-dom';
 import PATHS from 'routes/path';
 import { removeAuthenticatedCookie } from 'utils/handleAuthenticatedCookie';
 import './navbar.css';
@@ -19,6 +19,9 @@ function Navbar() {
 	const cart = useSelector(selectorShoppingCart);
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const [searchName, setSearchName] = useState();
 
 	// modal
 	const refDropdown = useRef();
@@ -52,6 +55,22 @@ function Navbar() {
 		dispatch(removeUser());
 	};
 
+	// search
+	const handleClickSearch = () => {
+		setIsOpenSearch(!isOpenSearch);
+		setSearchName("");
+		
+		navigate({
+			pathname: PATHS.SEARCH,
+			search: `?${createSearchParams({'name_contains': searchName})}`,
+		});
+	} 
+	const handleKeyDownEnterSearch = (event) => {
+    if (event.key === 'Enter') {
+      handleClickSearch();
+    }
+  }
+
 	return (
 		<nav id="navbar" className="container">
 			<div className="navbar__left">
@@ -82,8 +101,17 @@ function Navbar() {
 			</div>
 			<div className="navbar__right">
 				<InputRow className="navbar__link navbar__search">
-					<InputIcon className="ri-search-line" onClick={() => setIsOpenSearch(!isOpenSearch)}/>
-					<Input placeholder="Nhập tên sản phẩm" className={isOpenSearch ? "search__active" : "search__disable"}/>
+					<InputIcon
+						className="ri-search-line"
+						onClick={() => setIsOpenSearch(!isOpenSearch)}
+					/>
+					<Input
+						placeholder="Nhập tên sản phẩm"
+						className={isOpenSearch ? 'search__active' : 'search__disable'}
+						value={searchName}
+						setValue={setSearchName}
+						onKeyDown={handleKeyDownEnterSearch}
+					/>
 				</InputRow>
 				<NavLink
 					className={`navbar__link ${cart.length > 0 && 'had-notification'}`}

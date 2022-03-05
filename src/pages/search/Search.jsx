@@ -1,11 +1,10 @@
+import ProgressBar from '@badrap/bar-of-progress';
 import erestaurantApi from 'api/erestaurantApi';
 import Filter from 'components/filter/Filter';
 import ProductList from 'components/product/list/ProductList';
 import React, { useEffect, useState } from 'react';
-import { Router, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-
-import ProgressBar from '@badrap/bar-of-progress';
 
 const progress = new ProgressBar({
   size: 4,

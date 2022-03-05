@@ -9,12 +9,6 @@ function Filter() {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 
-	useEffect(() => {
-		console.log(Object.fromEntries([...searchParams]));
-		console.log(searchParams.get('categories.name_in'));
-	}, [searchParams])
-	
-
 	//get categories list
 	const { categoryList } = useCategories({
 		_sort: 'slug',
@@ -32,7 +26,9 @@ function Filter() {
 	const filterParams = (params) => Object.fromEntries(
 		Object.entries(params).filter(([key, value]) => value !== "")
 	)
-	const handleSubmitSearch = () => {
+	const handleSubmitSearch = (e) => {
+		e.preventDefault();
+
 		navigate({
 			pathname: PATHS.SEARCH,
 			search: `?${createSearchParams(filterParams(queryParams))}`,
@@ -150,6 +146,7 @@ function Filter() {
 export default Filter;
 
 const Wrapper = styled.form`
+	flex: 1;
 	width: 25%;
 	height: 100%;
 	min-width: 200px;

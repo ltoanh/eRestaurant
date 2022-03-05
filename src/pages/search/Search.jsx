@@ -1,7 +1,8 @@
+import Filter from 'components/filter/Filter'
 import React from 'react'
-import Filter from './filter/Filter'
 
 function Search() {
+  
   return (
     <div className='container'>
       <Filter />

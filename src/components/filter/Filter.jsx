@@ -1,13 +1,43 @@
 import Button from 'components/button/Button';
 import useCategories from 'hooks/useCategories';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
+import PATHS from 'routes/path';
 import styled from 'styled-components';
 
 function Filter() {
+	const navigate = useNavigate();
+	const [searchParams] = useSearchParams();
+
+	useEffect(() => {
+		console.log(Object.fromEntries([...searchParams]));
+		console.log(searchParams.get('categories.name_in'));
+	}, [searchParams])
+	
+
 	//get categories list
 	const { categoryList } = useCategories({
 		_sort: 'slug',
 	});
+
+	const [queryParams, setQueryParams] = useState(Object.fromEntries([...searchParams]) || {});
+
+	const handleOnChange = (e) => {
+		const target = e.target;
+		const value = target.value;
+		const name = target.name;
+		setQueryParams({ ...queryParams, [name]: value });
+	};
+
+	const filterParams = (params) => Object.fromEntries(
+		Object.entries(params).filter(([key, value]) => value !== "")
+	)
+	const handleSubmitSearch = () => {
+		navigate({
+			pathname: PATHS.SEARCH,
+			search: `?${createSearchParams(filterParams(queryParams))}`,
+		});
+	};
 
 	return (
 		<Wrapper>
@@ -18,10 +48,12 @@ function Filter() {
 					{categoryList.map((category) => (
 						<CategoryItemWrapper key={category.id}>
 							<Checkbox
-								type="checkbox"
-								name="category"
+								type="radio"
+								name="categories.name_in"
 								id={`category-${category.id}`}
-								value={category.id}
+								value={category.name}
+								onChange={handleOnChange}
+								defaultChecked={searchParams.get('categories.name_in') === category.name}
 							/>
 							<CategoryItemName htmlFor={`category-${category.id}`}>
 								{category.name}
@@ -35,9 +67,21 @@ function Filter() {
 			<FilterChoice>
 				<ChoiceTitle>Khoảng tiền:</ChoiceTitle>
 				<PriceRangeWrapper>
-					<PriceInput type="number" name="min-price" placeholder="10.000" />
+					<PriceInput
+						onChange={handleOnChange}
+						type="number"
+						name="price_gte"
+						placeholder="10.000"
+						defaultValue={searchParams.get('price_gte')}
+					/>
 					<ShortLine />
-					<PriceInput type="number" name="max-price" placeholder="200.000" />
+					<PriceInput
+						onChange={handleOnChange}
+						type="number"
+						name="price_lte"
+						placeholder="200.000"
+						defaultValue={searchParams.get('price_lte')}
+					/>
 				</PriceRangeWrapper>
 			</FilterChoice>
 			{/* rating */}
@@ -45,23 +89,60 @@ function Filter() {
 				<ChoiceTitle>Đánh giá:</ChoiceTitle>
 				<RatingWrapper>
 					{/* 5 */}
-					<RatingInput type="radio" name="rating" id="rating-5" />
+					<RatingInput
+						type="radio"
+						name="total_ratings_eq"
+						id="rating-5"
+						onChange={handleOnChange}
+						defaultChecked={searchParams.get('total_ratings_eq') === "5"}
+						value="5"
+					/>
 					<RatingStar htmlFor="rating-5" className="ri-star-fill" />
 					{/* 4 */}
-					<RatingInput type="radio" name="rating" id="rating-4" />
+					<RatingInput
+						type="radio"
+						name="total_ratings_eq"
+						id="rating-4"
+						onChange={handleOnChange}
+						defaultChecked={searchParams.get('total_ratings_eq') === "4"}
+						value="4"
+					/>
 					<RatingStar htmlFor="rating-4" className="ri-star-fill" />
 					{/* 3 */}
-					<RatingInput type="radio" name="rating" id="rating-3" />
+					<RatingInput
+						type="radio"
+						name="total_ratings_eq"
+						id="rating-3"
+						onChange={handleOnChange}
+						defaultChecked={searchParams.get('total_ratings_eq') === "3"}
+						value="3"
+					/>
 					<RatingStar htmlFor="rating-3" className="ri-star-fill" />
 					{/* 2 */}
-					<RatingInput type="radio" name="rating" id="rating-2" />
+					<RatingInput
+						type="radio"
+						name="total_ratings_eq"
+						id="rating-2"
+						onChange={handleOnChange}
+						defaultChecked={searchParams.get('total_ratings_eq') === "2"}
+						value="2"
+					/>
 					<RatingStar htmlFor="rating-2" className="ri-star-fill" />
 					{/* 1 */}
-					<RatingInput type="radio" name="rating" id="rating-1" />
+					<RatingInput
+						type="radio"
+						name="total_ratings_eq"
+						id="rating-1"
+						onChange={handleOnChange}
+						defaultChecked={searchParams.get('total_ratings_eq') === "1"}
+						value="1"
+					/>
 					<RatingStar htmlFor="rating-1" className="ri-star-fill" />
 				</RatingWrapper>
 			</FilterChoice>
-			<Button className="btn-primary-outline">Tìm kiếm</Button>
+			<Button onClick={handleSubmitSearch} className="btn-primary-outline">
+				Tìm kiếm
+			</Button>
 		</Wrapper>
 	);
 }
@@ -150,8 +231,8 @@ const PriceInput = styled.input`
 const RatingWrapper = styled.div`
 	display: flex;
 	align-items: center;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
 
 	& > * ~ * {
 		margin-left: 0.25rem;

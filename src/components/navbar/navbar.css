@@ -41,7 +41,9 @@
 
   cursor: pointer;
 }
-.navbar__middle .navbar__link:hover, .active_modal > i{
+.navbar__middle .navbar__link:hover,
+.active_modal > i,
+.navbar__link.active{
   color: var(--primary)
 }
 

@@ -5,6 +5,7 @@ const URL_CATEGORIES = '/categories';
 const URL_RATINGS = '/ratings';
 
 const URL_BILLS = '/bills';
+const URL_PRODUCT_BILL = '/product-bills';
 
 const URL_USERS = '/users';
 const URL_ME = '/users/me';
@@ -44,6 +45,9 @@ const erestaurantApi = {
 	// bill
 	createBill: (billData) => {
 		return axiosClient.post(URL_BILLS, billData);
+	},
+	createProductBill: (params) => {
+		return axiosClient.post(URL_PRODUCT_BILL, params);
 	}
 };
 

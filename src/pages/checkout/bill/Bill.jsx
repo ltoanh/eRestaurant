@@ -37,10 +37,9 @@ function Bill(props) {
 	// check all key had value
 	const checkHadValues = information && Object.values(information).every((key) => key !== '');
 
-	const createBillObject = (userID = null, products, total_price, status = "payment") => ({
+	const createBillObject = (userID = null, total_price, status = "payment") => ({
 		"user": userID,
 		"date": new Date().toISOString(),
-		"products": products.map(item => item.product.id),
 		total_price,
 		status,
 	});
@@ -54,8 +53,17 @@ function Bill(props) {
 			if (willConfirm) {
 				// create bill
 				try{
-					const params = createBillObject(information?.id, cart, totalPrice);
-					await erestaurantApi.createBill(params);
+					const billParams = createBillObject(information?.id, totalPrice);
+					const bill = await erestaurantApi.createBill(billParams);
+					// create products bill
+					cart.map(async item => {
+						const productBillParams = {
+							"bill": bill.id,
+							"product": item.product.id,
+							"quality": item.quality
+						};
+						await erestaurantApi.createProductBill(productBillParams);
+					})
 					swal({
 						icon: 'success',
 						title: "Thanh toán thành công",
@@ -63,7 +71,7 @@ function Bill(props) {
 						// clear when confirm cast the bill
 						dispatch(clearCart());
 
-						navigate("/order/123");
+						navigate(`/order/${bill.id}`);
 					})
 				} catch(err) {
 					swal({

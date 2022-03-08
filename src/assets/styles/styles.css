@@ -16,6 +16,8 @@
 
   --border: 10px;
 
+  --quill-height: 100px;
+
 }
 
 @import url('./base.css');
@@ -113,4 +115,10 @@ body{
 }
 .active-progress p{
   color: var(--primary);
+}
+
+/* quill */
+.quill{
+  width: 100%;
+  height: var(--quill-height);
 }

@@ -4,7 +4,7 @@ const avgTotalRating = (arr) => {
   if(isNaN(result)){
     return "Chưa có đánh giá"
   }
-  return result;
+  return result.toFixed(2);
 };
 
 export default avgTotalRating;

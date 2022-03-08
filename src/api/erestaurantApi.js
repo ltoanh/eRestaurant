@@ -19,8 +19,12 @@ const erestaurantApi = {
 	getCategories: (params) => {
 		return axiosClient.get(URL_CATEGORIES, params);
 	},
+	// rating
 	getRatings: (params) => {
 		return axiosClient.get(URL_RATINGS, params);
+	},
+	createRatingProduct: (params) => {
+		return axiosClient.post(URL_RATINGS, params);
 	},
 	
 	getUserByID: (id) => {

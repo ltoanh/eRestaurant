@@ -1,6 +1,5 @@
 import erestaurantApi from 'api/erestaurantApi';
 import React, { useEffect, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
 import formatDateRelative from 'utils/format/formatDate';
 import './product-rating.css';
 
@@ -41,7 +40,7 @@ function ProductRating({ item }) {
 			</div>
 			<h6 className="product_rating__item__title">{item.title}</h6>
 			<div className='product_rating__item__content'>
-				<ReactMarkdown>{item.content}</ReactMarkdown>
+				{item.content && <div dangerouslySetInnerHTML={{__html: item.content}} />}
 			</div>
 		</div>
 	);

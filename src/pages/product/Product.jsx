@@ -2,21 +2,25 @@ import erestaurantApi from 'api/erestaurantApi';
 import ArrowButton from 'components/button/ArrowButton';
 import Button from 'components/button/Button';
 import { addToCart } from 'features/cart/cartSlice';
+import { selectorUser } from 'features/user/userSlice';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import styled from 'styled-components';
 import avgTotalRating from 'utils/avgTotalRating';
 import formatCurrency from 'utils/format/formatCurrency';
+import formatInputNumeric from 'utils/format/formatInputNumeric';
 import formatProductAddToCart from 'utils/format/formatProductAddToCart';
 import './product.css';
 import ProductRating from './rating/ProductRating';
-import formatInputNumeric from 'utils/format/formatInputNumeric';
-import styled from 'styled-components';
-import { toast, ToastContainer } from 'react-toastify';
+import UserRating from './rating/UserRating';
 
 function Product() {
 	const { id } = useParams();
+	const user = useSelector(selectorUser);
+
 	const [product, setProduct] = useState({});
 
 	const dispatch = useDispatch();
@@ -58,9 +62,11 @@ function Product() {
 	return (
 		<div className="container product">
 			<ProductWrapper>
+				{/* left */}
 				<ProductImageWrapper>
 					<ProductImage src={product.thumbnail_src} alt={product.name} />
 				</ProductImageWrapper>
+				{/* right */}
 				<ProductInfoWrapper>
 					<ProductFeatures>
 						<ProductFeatureItem>
@@ -124,14 +130,20 @@ function Product() {
 					</ProductDescriptionWrapper>
 				</ProductInfoWrapper>
 			</ProductWrapper>
+			{/* rating */}
 			<ProductRatingWrapper>
 				<ProductRatingTitle>
 					Khách hàng của chúng tôi nói gì?
 				</ProductRatingTitle>
+				{/* user rating */}
+				{
+					user.user && <UserRating user={user.user}/>
+				}
+				{/* rating list */}
 				<ProductRatingList>
 					{product.ratings?.length > 0 ? (
 						product.ratings.map((item) => (
-							<ProductRating item={item} key={item.id} />
+							<ProductRating item={item} status="rating" key={item.id} />
 						))
 					) : (
 						<span>Hiện chưa có đánh giá</span>

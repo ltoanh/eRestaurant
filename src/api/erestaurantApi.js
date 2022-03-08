@@ -48,6 +48,10 @@ const erestaurantApi = {
 	},
 	createProductBill: (params) => {
 		return axiosClient.post(URL_PRODUCT_BILL, params);
+	},
+	getBillByID: (id) => {
+		const url = URL_BILLS + "/" + id;
+		return axiosClient.get(url, {});
 	}
 };
 

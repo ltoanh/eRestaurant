@@ -1,12 +1,11 @@
 :root{
   /* bg color */
   --background-primary: #FFFCF7;
-  --background-holiday: #db3232;
 
   /* color */
   --black: #08090D;
   --white: #fff;
-  --red: red;
+  --red: #db3232;
   --red-rgb: 219, 50, 50;
   --primary: #F2BD57;
   --primary-rgb: 242, 189, 87;
@@ -105,4 +104,13 @@ body{
 
 .dropdown__wrapper{
   position: relative;
+}
+
+.active-progress i{
+  color: var(--primary);
+
+  border-color: var(--primary)
+}
+.active-progress p{
+  color: var(--primary);
 }

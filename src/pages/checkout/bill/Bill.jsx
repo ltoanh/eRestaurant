@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import formatCurrency from 'utils/format/formatCurrency';
 import isValidBill from 'utils/validate/isValidBill';
 import styles from './bill.module.css';
@@ -143,10 +144,10 @@ function Bill(props) {
 
 export default Bill;
 
-const TotalPrice = ({totalPrice, discount}) => {
+export const TotalPrice = ({totalPrice, discount = 0}) => {
 
 	return (
-		<table style={{ width: '100%', borderSpacing: '.5rem 1rem' }}>
+		<TableTotalPrice>
 			<tbody>
 				<tr>
 					<td>Tổng tiền:</td>
@@ -163,6 +164,18 @@ const TotalPrice = ({totalPrice, discount}) => {
 					</td>
 				</tr>
 			</tbody>
-		</table>
+		</TableTotalPrice>
 	);
 };
+
+const TableTotalPrice = styled.table`
+	width: 100%;
+	border-spacing: .5rem 1rem;
+	border-collapse: collapse;
+
+
+	&, tr, td {
+		border: 1.5px solid var(--border-color);
+		padding: .5rem;
+	}
+`;

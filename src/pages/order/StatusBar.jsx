@@ -1,28 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-function StatusBar() {
+function StatusBar({status}) {
+
+	const [items, setItems] = useState([
+		{
+			name: "payment",
+			title: 'Thanh toán thành công',
+			iconClass: "ri-bill-line",
+			active: false,
+		},
+		{
+			name: "preparing",
+			title: 'Đang chuẩn bị hàng',
+			iconClass: "ri-inbox-unarchive-line",
+			active: false,
+		},
+		{
+			name: "shipping",
+			title: 'Đang giao hàng',
+			iconClass: "ri-e-bike-2-line",
+			active: false,
+		},
+		{
+			name: "success",
+			title: 'Hoàn thành',
+			iconClass: "ri-check-double-line",
+			active: false,
+		},
+	]);
+	const [numberOfActiveItems, setNumberOfActiveItems] = useState(0);
+	const [progressBarWidth, setProgressBarWidth] = useState(0);
+
+	const updateItemAtID = (items, i) => items.map((item, id) => id <= i ? {...item, active: true} : item);
+
+	useEffect(() => {
+		if(status){
+			for(let i = 0; i < 4; ++i){
+				const item = items[i];
+				setItems(updateItemAtID(items, i));
+				if(item.name === status){
+					break;
+				}
+			}
+		}
+	}, [status]);
+	
+	useEffect(() => {
+		setNumberOfActiveItems(items.filter(item => item.active).length);
+		setProgressBarWidth((numberOfActiveItems - 1) / (items.length - 1) * 100);
+	}, [items, numberOfActiveItems]);
+	
+
 	return (
 		<StatusBarWrapper>
 			<Timeline>
-				<ProgressBar />
+				<ProgressBar style={{width: `${progressBarWidth}%`}} />
 				<TimelineItemsWrapper>
-					<TimelineItem className='active-progress'>
-						<ItemIcon className="ri-bill-line" />
-						<ItemContent>Thanh toán thành công</ItemContent>
-					</TimelineItem>
-					<TimelineItem>
-            <ItemIcon className="ri-inbox-unarchive-line" />
-						<ItemContent>Đang chuẩn bị hàng</ItemContent>
-          </TimelineItem>
-					<TimelineItem>
-            <ItemIcon className="ri-e-bike-2-line" />
-						<ItemContent>Đang giao hàng</ItemContent>
-          </TimelineItem>
-					<TimelineItem>
-            <ItemIcon className="ri-check-double-line" />
-						<ItemContent>Hoàn thành</ItemContent>
-          </TimelineItem>
+					{items.map((item, idx) => (
+						<TimelineItem key={idx} className={item.active && "active-progress"}>
+							<ItemIcon className={item.iconClass} />
+							<ItemContent>{item.title}</ItemContent>
+						</TimelineItem>
+					))}
 				</TimelineItemsWrapper>
 			</Timeline>
 		</StatusBarWrapper>
@@ -32,8 +72,8 @@ function StatusBar() {
 export default StatusBar;
 
 const StatusBarWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 `;
 
 const Timeline = styled.div`
@@ -86,8 +126,8 @@ const TimelineItem = styled.div`
 const ItemIcon = styled.i`
 	position: absolute;
 	top: 1.25rem;
-  left: 50%;
-  transform: translateX(calc(-50% + 10px));
+	left: 50%;
+	transform: translateX(calc(-50% + 10px));
 
 	font-size: 1.5rem;
 	color: var(--border-color);
@@ -102,11 +142,10 @@ const ItemContent = styled.p`
 	position: absolute;
 
 	top: 4.5rem;
-  left: 50%;
-  transform: translateX(calc(-50% + 10px));
+	left: 50%;
+	transform: translateX(calc(-50% + 10px));
 	width: 200px;
-  text-align: center;
-
+	text-align: center;
 
 	color: var(--gray);
 `;

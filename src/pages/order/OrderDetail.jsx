@@ -23,7 +23,7 @@ function OrderDetail() {
 		<div className="container">
 			{bill ? (
 				<>
-					<StatusBar />
+					<StatusBar status={bill.status}/>
 					<DivideLine />
 					<OrderInfo bill={bill} />
 					<DivideLine />

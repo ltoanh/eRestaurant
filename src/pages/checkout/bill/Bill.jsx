@@ -1,4 +1,5 @@
 import swal from '@sweetalert/with-react';
+import erestaurantApi from 'api/erestaurantApi';
 import Button from 'components/button/Button';
 import { clearCart, selectorShoppingCart } from 'features/cart/cartSlice';
 import React, { useEffect, useState } from 'react';
@@ -19,24 +20,57 @@ function Bill(props) {
 
 	const { information, selectedCard } = props;
 
+	const [totalPrice, setTotalPrice] = useState(0);
+	const [discount, setDiscount] = useState(0);
+
+	const handleTotalPrice = () => {
+		return cart.reduce(
+			(total, item) => (total += item.quality * item.product.price),
+			0
+		);
+	};
+
+	useEffect(() => {
+		setTotalPrice(handleTotalPrice());
+	}, [cart]);
+
 	// check all key had value
-	const checkHadValues = Object.values(information).every((key) => key !== '');
+	const checkHadValues = information && Object.values(information).every((key) => key !== '');
+
+	const createBillObject = (userID = null, products, total_price, status = "payment") => ({
+		"user": userID,
+		"date": new Date().toISOString(),
+		"products": products.map(item => item.product.id),
+		total_price,
+		status,
+	});
 
 	// confirm bill
 	const handleConfirmBill = () => {
 		swal({
 			text: 'Bạn xác nhận thanh toán hóa đơn?',
 			buttons: true,
-		}).then((willConfirm) => {
+		}).then(async (willConfirm) => {
 			if (willConfirm) {
-				swal({
-					icon: 'success',
-				}).then(() => {
-					// clear when confirm cast the bill
-					dispatch(clearCart());
+				// create bill
+				try{
+					const params = createBillObject(information?.id, cart, totalPrice);
+					await erestaurantApi.createBill(params);
+					swal({
+						icon: 'success',
+						title: "Thanh toán thành công",
+					}).then( () => {
+						// clear when confirm cast the bill
+						dispatch(clearCart());
 
-					navigate("/order/123");
-				});
+						navigate("/order/123");
+					})
+				} catch(err) {
+					swal({
+						icon: 'error',
+						title: 'Lỗi thanh toán',
+					})
+				}
 			}
 		});
 	};
@@ -48,15 +82,15 @@ function Bill(props) {
 				<h3 className={styles.title}>Địa chỉ</h3>
 				{checkHadValues ? (
 					<>
-						<h4 className={styles.name}>{information.name}</h4>
+						<h4 className={styles.name}>{information?.name}</h4>
 						<p className={styles.small_text}>
 							Địa chỉ:{' '}
-							<span className={styles.text_black}>{information.address}</span>
+							<span className={styles.text_black}>{information?.address}</span>
 						</p>
 						<p className={styles.small_text}>
 							Số điện thoại:{' '}
 							<span className={styles.text_black}>
-								{information.phone_number}
+								{information?.phone_number}
 							</span>
 						</p>
 					</>
@@ -81,7 +115,7 @@ function Bill(props) {
 			{/* total price */}
 			<div className={styles.shipping_information}>
 				<h3 className={styles.title}>Thanh toán</h3>
-				<TotalPrice />
+				<TotalPrice totalPrice={totalPrice} discount={discount}/>
 			</div>
 			{/* btn */}
 			{isValidBill({
@@ -101,21 +135,7 @@ function Bill(props) {
 
 export default Bill;
 
-const TotalPrice = () => {
-	const cart = useSelector(selectorShoppingCart);
-	const [totalPrice, setTotalPrice] = useState(0);
-	const [discount, setDiscount] = useState(0);
-
-	const handleTotalPrice = () => {
-		return cart.reduce(
-			(total, item) => (total += item.quality * item.product.price),
-			0
-		);
-	};
-
-	useEffect(() => {
-		setTotalPrice(handleTotalPrice());
-	}, [cart]);
+const TotalPrice = ({totalPrice, discount}) => {
 
 	return (
 		<table style={{ width: '100%', borderSpacing: '.5rem 1rem' }}>

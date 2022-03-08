@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Bill from './bill/Bill';
 import CheckoutInformation from './information/CheckoutInformation';
 import './checkout.css';
+import { useSelector } from 'react-redux';
+import { selectorUser } from 'features/user/userSlice';
 
 const cardList = [
 	{
@@ -22,7 +24,7 @@ const cardList = [
 ];
 
 function Checkout() {
-	const user = null;
+	const user = useSelector(selectorUser);
 	const [information, setInformation] = useState({
 		name: '',
 		address: '',
@@ -33,7 +35,12 @@ function Checkout() {
 
 	useEffect(() => {
 		if (user !== null) {
-			setInformation(user);
+			setInformation({
+				id: user?.user?.id,
+				name: user?.user?.name,
+				address: user?.user?.address,
+				phone_number: user?.user?.phone_number,
+			});
 		}
 	}, [user]);
 

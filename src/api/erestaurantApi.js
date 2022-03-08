@@ -4,6 +4,8 @@ const URL_PRODUCTS = '/products';
 const URL_CATEGORIES = '/categories';
 const URL_RATINGS = '/ratings';
 
+const URL_BILLS = '/bills';
+
 const URL_USERS = '/users';
 const URL_ME = '/users/me';
 const URL_LOGIN = '/auth/local';
@@ -39,6 +41,10 @@ const erestaurantApi = {
 	getMe: () => {
 		return axiosClient.get(URL_ME, {});
 	},
+	// bill
+	createBill: (billData) => {
+		return axiosClient.post(URL_BILLS, billData);
+	}
 };
 
 export default erestaurantApi;

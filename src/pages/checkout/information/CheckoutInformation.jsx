@@ -11,7 +11,7 @@ function CheckoutInformation(props) {
 					Họ tên
 				</FormItemTitle>
 				<FormItemInput
-					value={information.name}
+					value={information?.name}
 					onChange={(e) =>
 						setInformation({ ...information, name: e.target.value })
 					}
@@ -25,7 +25,7 @@ function CheckoutInformation(props) {
 					Địa chỉ
 				</FormItemTitle>
 				<FormItemInput
-					value={information.address}
+					value={information?.address}
 					onChange={(e) =>
 						setInformation({ ...information, address: e.target.value })
 					}
@@ -39,7 +39,7 @@ function CheckoutInformation(props) {
 					Số điện thoại
 				</FormItemTitle>
 				<FormItemInput
-					value={information.phoneNumber}
+					value={information?.phone_number}
 					onChange={(e) =>
 						setInformation({ ...information, phone_number: e.target.value })
 					}

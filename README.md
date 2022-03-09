@@ -11,7 +11,7 @@ A Food E–Commerce website project
 
 **Client:** React.js, Redux-toolkit, React Router v6, js-cookie, React Quill, React Markdown, React Toastify, React Slick, Styled Component, Sweetalert
 
-**Server:** Strapi v3
+**Server:** Strapi v3, Heroku
 
 
 ## Demo

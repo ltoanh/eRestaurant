@@ -19,8 +19,8 @@ function Filter() {
 
 	const handleOnChange = (e) => {
 		const target = e.target;
-		const value = target.value;
 		const name = target.name;
+		const value = name === "total_ratings_gte" ? parseInt(target.value) : target.value;
 		setQueryParams({ ...queryParams, [name]: value });
 	};
 

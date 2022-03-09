@@ -83,11 +83,6 @@ function Navbar() {
 			<div className="navbar__middle">
 				<ul className="navbar__list">
 					<li className="navbar__list__item">
-						<NavLink className="navbar__link" to={PATHS.MENU}>
-							Thực đơn
-						</NavLink>
-					</li>
-					<li className="navbar__list__item">
 						<NavLink className="navbar__link" to={PATHS.STORE}>
 							Cửa hàng
 						</NavLink>
@@ -132,7 +127,7 @@ function Navbar() {
 						{isOpenedDropdown && (
 							<Dropdown ref={refDropdown}>
 								<DropdownItem>
-									<NavLink to="/user/123">
+									<NavLink to={`/user/${user.user.id}/general`}>
 										{user.user.name || user.user.email}
 									</NavLink>
 								</DropdownItem>

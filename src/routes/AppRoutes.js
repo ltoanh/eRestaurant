@@ -9,6 +9,7 @@ import Product from 'pages/product/Product';
 import Search from 'pages/search/Search';
 import StoreContent from 'pages/store/content/StoreContent';
 import Store from 'pages/store/Store';
+import UserDetail from 'pages/user/UserDetail';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PATHS from './path';
@@ -32,6 +33,8 @@ function AppRoutes() {
 
 			<Route path={PATHS.LOGIN} element={<Login />} />
 			<Route path={PATHS.SIGNUP} element={<SignUp />} />
+
+			<Route path={PATHS.USER} element={<UserDetail />} />
 		</Routes>
 	);
 }

@@ -46,6 +46,11 @@ const erestaurantApi = {
 	getMe: () => {
 		return axiosClient.get(URL_ME, {});
 	},
+	updateInfo: (id, params) => {
+		const url = URL_USERS + "/" + id;
+		return axiosClient.put(url, params);
+	},
+
 	// bill
 	createBill: (billData) => {
 		return axiosClient.post(URL_BILLS, billData);

@@ -4,6 +4,7 @@ import CheckoutInformation from './information/CheckoutInformation';
 import './checkout.css';
 import { useSelector } from 'react-redux';
 import { selectorUser } from 'features/user/userSlice';
+import withAuth from 'hooks/withAuth';
 
 const cardList = [
 	{
@@ -66,4 +67,4 @@ function Checkout() {
 	);
 }
 
-export default Checkout;
+export default withAuth(Checkout);

@@ -1,3 +1,4 @@
+import withAuth from 'hooks/withAuth';
 import React from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
@@ -23,14 +24,14 @@ function UserDetail() {
 	);
 }
 
-export default UserDetail;
+export default withAuth(UserDetail);
 
 const Header = styled.ul`
 	justify-content: space-evenly;
 	flex-wrap: wrap;
 	padding: 0 0 0.5rem;
 	margin: 1rem 0 2rem;
-	
+
 	font-weight: 600;
 
 	border-bottom: 1px solid var(--border-color);

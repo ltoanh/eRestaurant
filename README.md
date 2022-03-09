@@ -2,11 +2,11 @@
 # E-restaurant
 A Food E–Commerce website project
 ## Features
-- user can login, resgiter account
+- user can login, register account
 - display products by categories
-- search products by filter category, price, rating
+- search products: filter by category, price, rating
 - add products to cart, remove products from cart
-- only authenticated user can checkout, show user detail and order list, and order detail
+- only authenticated user can checkout, show user detail and order list with order detail
 ## Tech Stack
 
 **Client:** React.js, Redux-toolkit, React Router v6, js-cookie, React Quill, React Markdown, React Toastify, React Slick, Styled Component, Sweetalert

@@ -124,13 +124,13 @@ function Homepage() {
 			<div className="section section-flex">
 				<div className="section__left">
 					<h2 className="section__title">
-						Bạn có kế hoạch cho ngày hôm nay?<br></br>Đặt bàn ngay
+						Bạn có kế hoạch cho ngày hôm nay?<br></br>Đặt món ngay
 					</h2>
 					<p className="section__desc">
-						Đặt bàn online, xem các đánh giá về bữa ăn, và kiếm vouchers.
+						Đặt món online, xem các đánh giá về bữa ăn, và kiếm vouchers.
 					</p>
 					<div>
-						<Button className="btn-primary-outline">Đặt bàn ngay</Button>
+						<Button className="btn-primary-outline">Đặt món ngay</Button>
 					</div>
 				</div>
 				<div className="section__right">

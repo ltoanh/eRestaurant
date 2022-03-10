@@ -172,6 +172,9 @@ const ProductWrapper = styled.section`
 	display: flex;
 
 	gap: 2rem;
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+	}
 `;
 // left
 const ProductImageWrapper = styled.div`
@@ -250,6 +253,12 @@ const ProductQualityWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	@media screen and (max-width: 480px) {
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
 `;
 
 const ProductQuality = styled.div`

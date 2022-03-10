@@ -50,6 +50,9 @@ export default Search;
 
 const SearchWrapper = styled.div`
 	display: flex;
+	@media screen and (max-width: 480px) {
+		flex-direction: column;
+	}
 `;
 const ContentWrapper = styled.div`
 	flex: 4;

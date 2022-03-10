@@ -36,6 +36,9 @@ const Header = styled.ul`
   font-weight: 600;
 
   border-bottom: 1px solid var(--border-color);
+	@media screen and (max-width: 480px) {
+		gap: .5rem;
+	}
 `;
 const Item = styled.li`
 	& .active {
@@ -53,5 +56,9 @@ const Item = styled.li`
 		border-radius: 999px;
 
 		background-color: var(--primary);
+	}
+
+	@media screen and (max-width: 480px) {
+		width: 25%;
 	}
 `;

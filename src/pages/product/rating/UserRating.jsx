@@ -107,6 +107,10 @@ const Wrapper = styled.div`
 	gap: 1rem;
 
 	min-height: calc(13rem + var(--quill-height));
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+		min-height: 25rem;
+	}
 `;
 
 const WrapperRating = styled.div`

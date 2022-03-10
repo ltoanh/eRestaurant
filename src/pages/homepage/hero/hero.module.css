@@ -14,10 +14,11 @@
 
   margin-top: calc(var(--image-height) * 0.3 + .5rem);
   position: relative;
+  display: flex;
 }
 
 #bg__image{
-  position: absolute;
+  position: absolute; 
   bottom: 0;
   right: 5%;
   height: var(--image-height);
@@ -40,4 +41,26 @@
 
 #desc{
   font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  #bg{
+    height: auto;
+    position: static;
+    padding: 2rem 1rem;
+    margin-top: 1rem;
+  }
+  #bg__image{
+    display: none;
+    position: static;
+  }
+
+  #wrapper{
+    position: static;
+    max-width: 100%;
+  }
+
+  #title, .text_primary{
+    font-size: 1.25rem;
+  }
 }

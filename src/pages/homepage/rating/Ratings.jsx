@@ -6,19 +6,44 @@ import ArrowButton from 'components/button/ArrowButton';
 
 const LIMIT_SHOW_RATING = 10;
 
+const settingsSlider = {
+	arrows: false,
+	infinite: true,
+	speed: 500,
+	slidesToShow: 4,
+	slidesToScroll: 4,
+	// custom arrow
+	responsive: [
+		{
+			breakpoint: 1024,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3,
+			}
+		},
+		{
+			breakpoint: 600,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2,
+			}
+		},
+		{
+			breakpoint: 480,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				initialSlide: 0,
+			}
+		}
+	]
+};
+
 function Ratings() {
 	const [ratingsList, setRatingsList] = useState([]);
 
 	// slider
 	const refSlider = useRef();
-	const settingsSlider = {
-		arrows: false,
-		infinite: false,
-		speed: 500,
-		slidesToShow: 4,
-		slidesToScroll: 4,
-		// custom arrow
-	};
 
 	const getRatingsList = async () => {
 		const params = {

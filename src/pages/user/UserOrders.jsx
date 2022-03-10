@@ -27,15 +27,15 @@ function UserOrders() {
 	const [billList, setBillList] = useState();
 
 	useEffect(() => {
-		if(id){
-      (async () => {
-        const params = {
-          'user.id_eq': id,
-        };
-        const response = await erestaurantApi.getBill({params});
-        setBillList(response);
-      })();
-    };
+		if (id) {
+			(async () => {
+				const params = {
+					'user.id_eq': id,
+				};
+				const response = await erestaurantApi.getBill({ params });
+				setBillList(response);
+			})();
+		}
 	}, [id]);
 
 	return (
@@ -53,9 +53,9 @@ function UserOrders() {
 					{billList &&
 						billList.map((bill) => (
 							<Row key={bill.id}>
-								<th style={{textDecoration: "underline"}}>
-                  <NavLink to={`/order/${bill.id}`}>{bill.id}</NavLink>
-                </th>
+								<th style={{ textDecoration: 'underline' }}>
+									<NavLink to={`/order/${bill.id}`}>{bill.id}</NavLink>
+								</th>
 								<td>{bill.user.name}</td>
 								<td>{bill.user.address}</td>
 								<td>{formatDateRelative(bill.created_at)}</td>
@@ -79,11 +79,20 @@ const TableWrapper = styled.table`
 	border-collapse: collapse;
 
 	&,
-  thead th,
+	thead th,
 	tr,
 	td {
 		border: 1.5px solid var(--border-color);
 		padding: 0.5rem;
+	}
+
+	@media screen and (max-width: 480px) {
+		&,
+		thead th,
+		tr,
+		td, a {
+			font-size: 0.55rem;
+		}
 	}
 `;
 const BodyWrapper = styled.tbody`

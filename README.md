@@ -1,6 +1,7 @@
 
 # E-restaurant
 A Food E–Commerce website project
+![e-restaurant](https://github.com/whiwf/e-restaurant/blob/dev/public/Desktop%20-%202.png)
 ## Features
 - user can login, register account
 - display products by categories

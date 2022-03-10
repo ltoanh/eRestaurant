@@ -16,7 +16,7 @@
 	.container.page__flex {
 		flex-direction: column;
 	}
-	.page__left {
+	.container.page__flex .page__left {
 		max-height: 200px;
 	}
 	.page__left .page__half_img {

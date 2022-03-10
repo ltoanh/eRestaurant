@@ -18,3 +18,8 @@
 .active{
   border-color: var(--primary);
 }
+@media screen and (max-width: 768px) {
+  .card{
+    height: auto;
+  }
+}

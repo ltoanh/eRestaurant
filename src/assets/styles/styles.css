@@ -34,6 +34,10 @@ body{
   min-height: 100vh;
 }
 
+.hidden{
+  display: none;
+}
+
 .container{
   width: 85%;
   height: inherit;
@@ -121,4 +125,10 @@ body{
 .quill{
   width: 100%;
   height: var(--quill-height);
+}
+
+@media screen and (max-width: 768px) {
+  .container{
+    width: 90%;
+  }
 }

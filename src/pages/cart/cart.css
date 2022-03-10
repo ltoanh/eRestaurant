@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   padding: 0 13px;
+  flex-grow: 1;
   
   border: 1px solid var(--border-color);
   border-radius: var(--border) 0 0 var(--border);
@@ -43,7 +44,7 @@
 .cart__inp_voucher--input input{
   display: block;
   flex-grow: 1;
-  
+  width: 100%;
   margin-left: 7px;
 
   background-color: transparent;
@@ -51,4 +52,25 @@
 
 .cart__inp_voucher .btn{
   border-radius: 0 var(--border) var(--border) 0;
+}
+
+@media screen and (max-width: 768px) {
+  .cart{
+    flex-direction: column;
+  }
+
+  .cart__inp_voucher{
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  .cart__inp_voucher .btn{
+    border-radius: var(--border);
+  }
+
+  .cart__inp_voucher--input{
+    padding: 7px 13px;
+    border-radius: var(--border);
+  }
+
 }

@@ -1,78 +1,93 @@
-.section{
-  padding: 2rem 0 1rem;
+.section {
+	padding: 2rem 0 1rem;
 }
-.section img{
-  object-fit: contain;
-}
-
-.section-row{
-  display: flex;
-  gap: 10px;
-  margin: 1rem 0;
+.section img {
+	object-fit: contain;
 }
 
-.section__bg-secondary{
-  background-color: var(--secondary);
-  
-  padding: 1rem 2rem;
-
-  border-radius: var(--border);
+.section-row {
+	display: flex;
+	gap: 10px;
+	margin: 1rem 0;
 }
 
-.section__title{
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  color: var(--background-holiday);
+.section__bg-secondary {
+	background-color: var(--secondary);
+
+	padding: 1rem 2rem;
+
+	border-radius: var(--border);
 }
 
-.section-flex{
-  display: flex;
-  gap: 3rem;
-  margin: 3rem 0;
+.section__title {
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	color: var(--background-holiday);
 }
-.section-flex .section__desc{
-  margin-bottom: 2rem;
+
+.section-flex {
+	display: flex;
+	gap: 3rem;
+	margin: 3rem 0;
+}
+.section-flex .section__desc {
+	margin-bottom: 2rem;
 }
 
 .section__left,
-.section__right{
-  flex: 1;
+.section__right {
+	flex: 1;
 }
-.section__left--image{
-  object-fit: contain;
+.section__left--image {
+	object-fit: contain;
 }
 
 .section__left > * ~ *,
 .section__right > * ~ * {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
 
 .section__left,
-.section__right{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.section__right {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 /* service */
-.service-list{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  row-gap: 1rem;
-  margin: 2rem 0;
+.service-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	row-gap: 1rem;
+	margin: 2rem 0;
 }
-.service-item{
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.service-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
-.service-item__image{
-  height: 45px;
-  padding: 7px;
+.service-item__image {
+	height: 45px;
+	padding: 7px;
 
-  border-radius: 999px;
-  border: 2px dashed #ebebee;
-  background-color: var(--white);
+	border-radius: 999px;
+	border: 2px dashed #ebebee;
+	background-color: var(--white);
 }
-.service-item__title{
-  font-weight: 600;
+.service-item__title {
+	font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+	.section-flex {
+		gap: 0;
+	}
+	.section__image {
+		display: none;
+	}
+	.section-flex .section__desc {
+		margin-bottom: 1rem;
+	}
+  .section-row{
+    flex-direction: column;
+  }
 }

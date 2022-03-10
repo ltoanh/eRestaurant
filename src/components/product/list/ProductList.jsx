@@ -26,4 +26,8 @@ const ProductListWrapper = styled.div`
 const ProductItem = styled.div`
   width: calc(25% - 3 * 1rem);
 	min-width: 200px;
+
+	@media screen and (max-width: 480px) {
+		width: 100%;
+	}
 `;

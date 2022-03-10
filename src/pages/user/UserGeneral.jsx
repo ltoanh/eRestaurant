@@ -11,7 +11,7 @@ import styled from 'styled-components';
 function UserGeneral() {
 	const { id } = useParams();
 	const user = useSelector(selectorUser);
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const [userDetail, setUserDetail] = useState();
 
@@ -26,27 +26,28 @@ function UserGeneral() {
 		});
 	};
 
-  const handleSubmitUpdateInfo = () => {
-    swal({
-      text: "Bạn có chắc muốn cập nhật thông tin?",
-      buttons: true,
-    }).then(async will => {
-      if(will){
-        const response = await erestaurantApi.updateInfo(id, userDetail);
-        dispatch(setUser(response));
+	const handleSubmitUpdateInfo = () => {
+		swal({
+			text: 'Bạn có chắc muốn cập nhật thông tin?',
+			buttons: true,
+		})
+			.then(async (will) => {
+				if (will) {
+					const response = await erestaurantApi.updateInfo(id, userDetail);
+					dispatch(setUser(response));
 
-		    await toast.success("Cập nhật thành công!");
-        window.location.reload();
-        
-      }
-    }).catch(err => {
-      console.log(err);
-      swal({
-        icon: "error",
-        text: "Lỗi cập nhật",
-      })
-    })
-  }
+					await toast.success('Cập nhật thành công!');
+					window.location.reload();
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+				swal({
+					icon: 'error',
+					text: 'Lỗi cập nhật',
+				});
+			});
+	};
 
 	return (
 		<Wrapper>
@@ -94,7 +95,7 @@ function UserGeneral() {
 						onChange={handleOnChange}
 					/>
 				</Item>
-        <Item>
+				<Item>
 					<Title htmlFor="phone_number">Avatar link:</Title>
 					<Input
 						type="text"
@@ -104,11 +105,16 @@ function UserGeneral() {
 						onChange={handleOnChange}
 					/>
 				</Item>
-        <Center>
-          <Button onClick={handleSubmitUpdateInfo} className="btn btn_primary btn-small">Cập nhật</Button>
-        </Center>
+				<Center>
+					<Button
+						onClick={handleSubmitUpdateInfo}
+						className="btn btn_primary btn-small"
+					>
+						Cập nhật
+					</Button>
+				</Center>
 			</DetailWrapper>
-      <ToastContainer
+			<ToastContainer
 				position="bottom-right"
 				autoClose={3000}
 				hideProgressBar={false}
@@ -129,6 +135,9 @@ const Wrapper = styled.div`
 	display: flex;
 	width: 100%;
 	gap: 3rem;
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+	}
 `;
 
 const ImageWrapper = styled.div``;
@@ -164,7 +173,7 @@ const Input = styled.input`
 `;
 
 const Center = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
+	display: flex;
+	justify-content: center;
+	margin: 2rem 0;
 `;

@@ -1,12 +1,12 @@
 import Button from 'components/button/Button';
 import useCategories from 'hooks/useCategories';
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import PATHS from 'routes/path';
 import styled from 'styled-components';
 import FilterRatting from './FilterRatting';
 
-function Filter() {
+function Filter(props, ref) {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 
@@ -37,7 +37,7 @@ function Filter() {
 	};
 
 	return (
-		<Wrapper>
+		<Wrapper ref={ref}>
 			{/* category */}
 			<FilterChoice>
 				<ChoiceTitle>Danh mục:</ChoiceTitle>
@@ -93,7 +93,7 @@ function Filter() {
 	);
 }
 
-export default Filter;
+export default forwardRef(Filter);
 
 const Wrapper = styled.form`
 	flex: 1;
@@ -106,6 +106,14 @@ const Wrapper = styled.form`
 
 	& > * ~ * {
 		margin-top: 2rem;
+	}
+
+	@media screen and (max-width: 480px) {
+		margin: 0 0 2rem;
+		border-right: 0;
+		border-bottom: 1px solid var(--border-color);
+		padding: 1rem 0;
+		width: 100%;
 	}
 `;
 

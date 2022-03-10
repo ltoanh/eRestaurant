@@ -73,15 +73,15 @@ function ShoppingProductList() {
 	return (
 		<table className={styles.table}>
 			<tbody>
-				<tr>
+				<TableHeader>
 					<th className={styles.th}>Sản phẩm</th>
 					<th className={styles.th}>Số lượng</th>
 					<th className={`text_right ${styles.th}`}>Giá</th>
-				</tr>
+				</TableHeader>
 				{shoppingProducts.map((item) => (
-					<tr key={item.product.id}>
+					<ItemRow key={item.product.id}>
 						{/* name */}
-						<td className={styles.table__product_name}>
+						<th className={styles.table__product_name}>
 							<div className={styles.table__row}>
 								<img
 									className={styles.product_image}
@@ -90,7 +90,7 @@ function ShoppingProductList() {
 								/>
 								<p className={styles.center}>{item.product.name}</p>
 							</div>
-						</td>
+						</th>
 						{/* quality */}
 						<td>
 							<div className={styles.table__row}>
@@ -135,7 +135,7 @@ function ShoppingProductList() {
 								</span>
 							</div>
 						</td>
-					</tr>
+					</ItemRow>
 				))}
 			</tbody>
 		</table>
@@ -152,4 +152,27 @@ const ProductQualityInput = styled.input`
 	background-color: transparent;
 
 	border-radius: 5px;
+`;
+const TableHeader = styled.tr`
+	@media screen and (max-width: 480px) {
+		display: none;
+	}
+`;
+
+const ItemRow = styled.tr`
+	@media screen and (max-width: 480px) {
+		display: flex;
+		flex-direction: column;
+		gap: .75rem;
+		padding: 1rem 0;
+
+		border-bottom: 1px solid var(--border-color);
+
+		& > * {
+			max-width: 100%;
+
+			display: flex;
+			justify-content: flex-start;
+		}
+	}
 `;

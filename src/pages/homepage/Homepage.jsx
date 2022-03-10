@@ -48,7 +48,7 @@ function Homepage() {
 				<SliderProductList list={latestProductsList} />
 			</section>
 			<div className="section section-flex">
-				<div className="section__left">
+				<div className="section__left section__image">
 					<img
 						className="section__left--image"
 						src={svgHumanService}
@@ -133,7 +133,7 @@ function Homepage() {
 						<Button className="btn-primary-outline">Đặt món ngay</Button>
 					</div>
 				</div>
-				<div className="section__right">
+				<div className="section__right section__image">
 					<img
 						className="section__left--image"
 						src={svgHumanPlan}
@@ -167,7 +167,7 @@ function Homepage() {
 						</Button>
 					</div>
 				</div>
-				<div className="section__right">
+				<div className="section__right section__image">
 					<img height="400px" src={imgPhone} alt="download erestaurant" />
 				</div>
 			</div>

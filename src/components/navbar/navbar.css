@@ -100,3 +100,12 @@
 .navbar__search input.search__active{
   width: 100%;
 }
+
+@media screen and (max-width: 480px){
+  #navbar{
+    flex-direction: column;
+    margin: 1rem auto;
+    gap: .75rem;
+    height: auto;
+  }
+}

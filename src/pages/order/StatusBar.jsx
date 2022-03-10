@@ -148,4 +148,8 @@ const ItemContent = styled.p`
 	text-align: center;
 
 	color: var(--gray);
+
+	@media screen and (max-width: 480px) {
+		display: none;
+	}
 `;

@@ -31,6 +31,9 @@ function Login() {
 	return (
 		<div className="container page__flex">
 			<div className="page__left">
+				<img className="page__half_img" src={imgLogin} alt="erestaurant" />
+			</div>
+			<div className="page__right">
 				<div className="form__center">
 					<h3 className="page__title">Chào mừng trở lại</h3>
 					<InputRow>
@@ -69,9 +72,6 @@ function Login() {
 					</div>
 					{errorMessage && <p className="red_text">{errorMessage}</p>}
 				</div>
-			</div>
-			<div className="page__right">
-				<img className="page__half_img" src={imgLogin} alt="erestaurant" />
 			</div>
 		</div>
 	);

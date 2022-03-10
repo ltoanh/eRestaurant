@@ -1,13 +1,30 @@
-.form__center{
-  padding: 4rem;
+.form__center {
+	padding: 4rem;
 }
 
 .form__center > * ~ * {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
 
-.form__row_between{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.form__row_between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+	.container.page__flex {
+		flex-direction: column;
+	}
+	.page__left {
+		max-height: 200px;
+	}
+	.page__left .page__half_img {
+		max-height: inherit;
+		object-fit: contain;
+	}
+	.form__row_between {
+		flex-direction: column;
+    gap: .5rem;
+	}
 }
